@@ -1,0 +1,58 @@
+import { Project } from "@/types";
+
+export const projects: Project[] = [
+  {
+    id: "1",
+    title: "Task Trail",
+    description: "할 일 관리와 생산성 추적을 위한 웹 애플리케이션. 직관적인 UI와 실시간 동기화를 지원합니다.",
+    image: "/images/projects/project-1.jpg",
+    tags: ["React", "TypeScript", "Node.js"],
+    category: "fullstack",
+    links: { github: "https://github.com/yourusername/task-trail" },
+  },
+  {
+    id: "2",
+    title: "Pomodoro Timer",
+    description: "집중력 향상을 위한 포모도로 타이머 크롬 확장 프로그램. 커스텀 타이머와 통계 기능을 제공합니다.",
+    image: "/images/projects/project-2.jpg",
+    tags: ["Chrome Extension", "JavaScript", "CSS"],
+    category: "web",
+    links: { github: "https://github.com/yourusername/pomodoro-timer" },
+  },
+  {
+    id: "3",
+    title: "Point Manager",
+    description: "포인트 기반 보상 시스템 관리 플랫폼. 대시보드와 분석 기능을 포함합니다.",
+    image: "/images/projects/project-3.jpg",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    category: "fullstack",
+    links: { github: "https://github.com/yourusername/point-manager" },
+  },
+  {
+    id: "4",
+    title: "ClickHouse Practice",
+    description: "대용량 데이터 처리를 위한 ClickHouse 실습 프로젝트. 쿼리 최적화와 데이터 분석을 다룹니다.",
+    image: "/images/projects/project-4.jpg",
+    tags: ["ClickHouse", "SQL", "Data Engineering"],
+    category: "other",
+    links: { github: "https://github.com/yourusername/clickhouse-practice" },
+  },
+  {
+    id: "5",
+    title: "55h",
+    description: "주 55시간 근무 시간 추적 및 관리 도구. 업무 효율성을 시각화합니다.",
+    image: "/images/projects/project-5.jpg",
+    tags: ["TypeScript", "React", "Chart.js"],
+    category: "web",
+    links: { github: "https://github.com/yourusername/55h" },
+  },
+  {
+    id: "6",
+    title: "Homebrew Tap",
+    description: "커스텀 Homebrew 패키지 저장소. CLI 도구 배포를 자동화합니다.",
+    image: "/images/projects/project-6.jpg",
+    tags: ["Shell", "Ruby", "CI/CD"],
+    category: "other",
+    links: { github: "https://github.com/yourusername/homebrew-tap" },
+  },
+];
