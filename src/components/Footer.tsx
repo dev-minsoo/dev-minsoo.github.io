@@ -1,6 +1,6 @@
 import * as Icons from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, type LucideIcon } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-6">
             {siteConfig.socials.map((social) => {
-              const Icon = Icons[social.icon as keyof typeof Icons];
+              const Icon = Icons[social.icon as keyof typeof Icons] as LucideIcon | undefined;
               return (
                 Icon && (
                   <a

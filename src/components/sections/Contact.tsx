@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
-import { Mail } from "lucide-react";
+import { Mail, type LucideIcon } from "lucide-react";
 import SectionContainer from "@/components/ui/SectionContainer";
 import Button from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
@@ -36,7 +36,7 @@ export default function Contact() {
           className="grid gap-3"
         >
           {siteConfig.socials.map((social) => {
-            const Icon = Icons[social.icon as keyof typeof Icons];
+            const Icon = Icons[social.icon as keyof typeof Icons] as LucideIcon | undefined;
             return (
               Icon ? (
                 <a

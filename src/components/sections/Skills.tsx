@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 import SectionContainer from "@/components/ui/SectionContainer";
 import { skillCategories } from "@/config/skills";
 import Card from "@/components/ui/Card";
@@ -23,7 +24,7 @@ export default function Skills() {
               <p className="mt-2 text-xs text-slate-400 uppercase tracking-[0.2em]">Proficiency</p>
               <div className="mt-5 space-y-3">
                 {category.skills.map((skill) => {
-                  const Icon = Icons[skill.icon as keyof typeof Icons];
+                  const Icon = Icons[skill.icon as keyof typeof Icons] as LucideIcon | undefined;
                   const level = typeof skill.level === "number" ? Math.max(0, Math.min(skill.level, 100)) : 75;
                   return (
                     <div key={skill.name} className="rounded-xl border border-white/10 bg-slate-900/45 px-4 py-3">
