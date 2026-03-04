@@ -26,10 +26,7 @@ export default function SectionContainer({
     <section
       id={id}
       ref={ref}
-      className={cn(
-        "w-full max-w-[1200px] mx-auto px-6 py-24",
-        className
-      )}
+      className={cn("section-shell py-24", className)}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -37,16 +34,14 @@ export default function SectionContainer({
         transition={{ duration: 0.5 }}
       >
         {title && (
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-emerald-500 bg-clip-text text-transparent">
-            {title}
-          </h2>
+          <div className="relative">
+            <p className="title-line text-[0.68rem] font-mono text-cyan-300/90 uppercase tracking-[0.24em]">{id}</p>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-white">{title}</h2>
+            {subtitle && <p className="mt-3 text-slate-300 max-w-[62ch]">{subtitle}</p>}
+            <div className="mt-5 h-px w-24 bg-gradient-to-r from-cyan-300 to-indigo-400" />
+          </div>
         )}
-        {subtitle && (
-          <p className="text-zinc-400 mt-4">{subtitle}</p>
-        )}
-        <div className={title || subtitle ? "mt-12" : ""}>
-          {children}
-        </div>
+        <div className={title || subtitle ? "mt-10" : ""}>{children}</div>
       </motion.div>
     </section>
   );

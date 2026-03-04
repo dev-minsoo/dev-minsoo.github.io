@@ -10,8 +10,8 @@ export default function Card({ children, className, hover = false }: Props) {
   return (
     <div
       className={cn(
-        "bg-zinc-900/50 border border-zinc-800 rounded-xl p-6",
-        hover && "hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-300",
+        "rounded-2xl p-6 ring-gradient glass-card transition-all duration-300",
+        hover && "hover:-translate-y-1 hover:border-white/40",
         className
       )}
     >

@@ -5,6 +5,7 @@ export interface Project {
   image: string;
   tags: string[];
   category: "web" | "mobile" | "fullstack" | "other";
+  outcome?: string;
   links: {
     github?: string;
     demo?: string;
@@ -14,6 +15,7 @@ export interface Project {
 export interface Skill {
   name: string;
   icon: string;
+  level?: number;
 }
 
 export interface SkillCategory {
@@ -33,10 +35,11 @@ export interface SiteConfig {
   tagline: string;
   description: string;
   bio: string;
+  introduction?: string[];
   highlights: string[];
   socials: Social[];
   links?: {
     github?: string;
-    linkedin?: string;
+    blog?: string;
   };
 }

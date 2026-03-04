@@ -19,26 +19,24 @@ export default function Button({
   onClick,
   className,
 }: Props) {
-  const baseClasses = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200";
+  const baseClasses =
+    "inline-flex items-center justify-center rounded-2xl font-semibold tracking-wide transition-all duration-200";
 
   const variantClasses = {
-    primary: "bg-blue-500 hover:bg-blue-600 text-white",
-    secondary: "border border-zinc-700 hover:border-zinc-500 text-zinc-300",
-    ghost: "hover:bg-zinc-800 text-zinc-400",
+    primary:
+      "bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-500 text-slate-950 hover:brightness-110",
+    secondary:
+      "border border-cyan-200/45 text-cyan-100 hover:bg-cyan-200/12 hover:text-white",
+    ghost: "text-slate-200 hover:text-white hover:bg-white/10",
   };
 
   const sizeClasses = {
     sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
+    md: "px-5 py-2.5 text-sm",
+    lg: "px-7 py-3 text-base shadow-emerald",
   };
 
-  const classes = cn(
-    baseClasses,
-    variantClasses[variant],
-    sizeClasses[size],
-    className
-  );
+  const classes = cn(baseClasses, variantClasses[variant], sizeClasses[size], className);
 
   if (href) {
     return (

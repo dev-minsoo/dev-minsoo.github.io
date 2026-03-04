@@ -11,73 +11,66 @@ interface Props {
 }
 
 const gradients = [
-  "bg-gradient-to-br from-blue-500 to-indigo-600",
-  "bg-gradient-to-br from-purple-500 to-pink-600",
-  "bg-gradient-to-br from-emerald-500 to-teal-600",
-  "bg-gradient-to-br from-orange-500 to-red-600",
-  "bg-gradient-to-br from-cyan-500 to-blue-600",
-  "bg-gradient-to-br from-violet-500 to-purple-600",
+  "from-cyan-400/40 to-blue-700/60",
+  "from-violet-500/40 to-indigo-700/60",
+  "from-emerald-400/40 to-teal-700/60",
 ];
 
 export default function ProjectCard({ project, index }: Props) {
   const gradientClass = gradients[index % gradients.length];
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.2 }}
-    >
-      <Card hover className="h-full flex flex-col">
-        {/* Colored placeholder instead of image */}
-        <div className={`h-48 rounded-lg ${gradientClass}`} />
+    <motion.article whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
+      <Card hover className="h-full flex flex-col border border-white/10">
+        <div className={`h-40 rounded-xl bg-gradient-to-br ${gradientClass} border border-white/10`} />
 
-        <div className="flex-1 mt-4">
-          <h3 className="text-xl font-semibold text-white">
-            {project.title}
-          </h3>
-          <p className="text-zinc-400 text-sm mt-2 line-clamp-2">
-            {project.description}
-          </p>
+        <div className="flex-1 mt-5">
+          <p className="text-xs font-mono text-cyan-200 uppercase tracking-[0.2em]">{project.category}</p>
+          <h3 className="text-xl font-semibold text-white mt-2">{project.title}</h3>
+          <p className="text-slate-400 text-sm mt-3 leading-relaxed">{project.description}</p>
 
-          {/* Tags */}
+          {project.outcome ? (
+            <div className="mt-4 text-xs text-cyan-100 bg-cyan-900/25 border border-cyan-300/30 rounded-xl px-3 py-2">
+              {project.outcome}
+            </div>
+          ) : null}
+
           <div className="flex flex-wrap gap-2 mt-4">
             {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-zinc-800 text-zinc-300 text-xs px-2 py-1 rounded-full"
-              >
+              <span key={tag} className="px-2 py-1 rounded-full text-xs border border-white/15 text-slate-300">
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Links */}
         <div className="flex gap-3 mt-6">
-          {project.links.github && (
+          {project.links.github ? (
             <a
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
               <Github size={18} />
               <span className="text-sm">Code</span>
             </a>
-          )}
-          {project.links.demo && (
+          ) : null}
+
+          {project.links.demo ? (
             <a
               href={project.links.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
               <ExternalLink size={18} />
               <span className="text-sm">Demo</span>
             </a>
-          )}
+          ) : null}
         </div>
       </Card>
-    </motion.div>
+    </motion.article>
   );
 }
+
