@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site";
 
 export default function Contact() {
   return (
-    <SectionContainer id="contact" title="Contact" subtitle="실무 적용까지 이어지는 협업을 우선으로 합니다">
+    <SectionContainer id="contact" title="Contact" subtitle="단단한 백엔드 설계와 데이터 실무 경험을 연결하여, 사용자에게 가치 있는 제품을 만듭니다.">
       <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div
           initial={{ opacity: 0, x: -18 }}
@@ -20,8 +20,8 @@ export default function Contact() {
         >
           <Mail className="w-12 h-12 text-cyan-300" />
           <p className="mt-5 text-slate-300 leading-relaxed">
-            프로젝트 시작 전에 목표, 일정, 품질 기준을 먼저 맞춰 진행 속도를 높입니다. 결과는 사용자의 실제 업무 흐름에서
-            검증할 수 있어야 한다고 생각합니다.
+            서비스 백엔드 개발부터 데이터/AI 파이프라인 구축까지, 안정적인 운영과 성장을 고민하는 개발자입니다. 새로운
+            도전에 대해 함께 이야기 나누고 싶다면 언제든 메일로 연락 부탁드립니다.
           </p>
           <Button href={`mailto:${siteConfig.email}`} variant="primary" className="mt-8">
             메일로 바로 문의하기
