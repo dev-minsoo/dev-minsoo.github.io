@@ -7,16 +7,16 @@ import Card from "@/components/ui/Card";
 
 const experiences = [
   {
-    company: "현재 회사 (회사명 입력)",
+    company: "디케이테크인(dktechin)",
     role: "Backend Developer",
-    period: "YYYY.MM - Present",
+    period: "2022.05 - 재직중",
     summary:
-      "검색 고도화 업무를 중심으로 데이터 파이프라인 구축, AI 모델 기반 데이터 품질 개선, A/B 테스트, 학습 데이터 정비를 수행하며 실무 문제 해결에 집중했습니다.",
+      "서비스 백엔드 경험을 바탕으로 AI/ML 모델을 실제 서비스에 안전하게 연결하는 플랫폼 백엔드 역할을 수행하고 있습니다. 최근에는 검색 API 전환 과정에서 SDK 기반 트래픽 분할과 결과 수집 체계를 설계해 A/B 실험과 점진 배포가 가능한 운영 구조를 만들었습니다.",
     highlights: [
-      "검색 데이터 흐름 정비 및 파이프라인 구축",
-      "AI 모델 활용 품질 개선 실험과 운영 반영",
-      "A/B 테스트 기반 개선안 검증",
-      "학습 데이터 정비 및 품질 관리 프로세스 개선",
+      "검색 API 전환을 위한 SDK 기반 A/B 실험 및 점진 배포 체계 구축",
+      "레이블링 품질 평가/피드백을 모델 재학습으로 연결하는 학습 피드백 루프 설계",
+      "수억 건 규모 상품 이미지/메타데이터 ETL 및 증분 반영 파이프라인 구현",
+      "검색/평가 운영 플랫폼 개발로 데이터 수집-실험-개선 사이클 고도화",
     ],
   },
 ];
@@ -36,8 +36,8 @@ export default function Experience() {
             <Card>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="text-sm text-cyan-300 uppercase tracking-[0.18em]">{experience.role}</p>
-                  <h3 className="mt-1 text-xl font-semibold text-white">{experience.company}</h3>
+                  <h3 className="text-xl font-semibold text-white">{experience.company}</h3>
+                  <p className="mt-1 text-sm text-cyan-300 uppercase tracking-[0.18em]">{experience.role}</p>
                 </div>
                 <p className="inline-flex items-center gap-2 text-sm text-slate-300">
                   <CalendarDays size={16} className="text-cyan-300" />
