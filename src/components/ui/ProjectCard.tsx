@@ -12,6 +12,13 @@ interface Props {
   index: number;
 }
 
+type ActionLink = {
+  key: string;
+  href: string;
+  label: string;
+  icon: typeof ExternalLink | typeof Github;
+};
+
 const gradients = [
   "from-cyan-400/40 to-blue-700/60",
   "from-violet-500/40 to-indigo-700/60",
@@ -21,7 +28,7 @@ const gradients = [
 export default function ProjectCard({ project, index }: Props) {
   const gradientClass = gradients[index % gradients.length];
   const imageFitClass = project.imageFit === "contain" ? "object-contain p-3" : "object-cover";
-  const actionLinks = project.demoFirst
+  const actionLinks: ActionLink[] = (project.demoFirst
     ? [
         project.links.demo
           ? {
@@ -39,7 +46,7 @@ export default function ProjectCard({ project, index }: Props) {
               icon: Github,
             }
           : null,
-      ].filter(Boolean)
+      ]
     : [
         project.links.github
           ? {
@@ -57,7 +64,7 @@ export default function ProjectCard({ project, index }: Props) {
               icon: ExternalLink,
             }
           : null,
-      ].filter(Boolean);
+      ]).filter((link): link is ActionLink => link !== null);
 
   return (
     <motion.article className="h-full" whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
@@ -121,20 +128,21 @@ export default function ProjectCard({ project, index }: Props) {
           </Link>
 
           <div className="flex gap-3">
-          {actionLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-            <a
-              key={link.key}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
-            >
-              <Icon size={18} />
-              <span className="text-sm">{link.label}</span>
-            </a>
-          )})}
+            {actionLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.key}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-slate-300 transition-colors hover:text-white"
+                >
+                  <Icon size={18} />
+                  <span className="text-sm">{link.label}</span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </Card>

@@ -11,6 +11,14 @@ interface PageProps {
   }>;
 }
 
+type ActionLink = {
+  key: string;
+  href: string;
+  label: string;
+  icon: typeof ExternalLink | typeof Github;
+  className: string;
+};
+
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
@@ -42,7 +50,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   const imageFitClass = project.imageFit === "contain" ? "object-contain p-6" : "object-cover";
-  const actionLinks = project.demoFirst
+  const actionLinks: ActionLink[] = (project.demoFirst
     ? [
         project.links.demo
           ? {
@@ -64,7 +72,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 "inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5",
             }
           : null,
-      ].filter(Boolean)
+      ]
     : [
         project.links.github
           ? {
@@ -86,7 +94,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 "inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition-colors hover:border-cyan-200/70 hover:bg-cyan-300/15",
             }
           : null,
-      ].filter(Boolean);
+      ]).filter((link): link is ActionLink => link !== null);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#04050f] px-6 py-24">
