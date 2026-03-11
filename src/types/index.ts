@@ -1,11 +1,19 @@
+export interface ProjectDetailTemplate {
+  overview: string;
+  implementation: string[];
+  impact: string[];
+}
+
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   description: string;
   image: string;
   tags: string[];
   category: "web" | "mobile" | "fullstack" | "other";
-  outcome?: string;
+  outcome: string;
+  detail: ProjectDetailTemplate;
   links: {
     github?: string;
     demo?: string;

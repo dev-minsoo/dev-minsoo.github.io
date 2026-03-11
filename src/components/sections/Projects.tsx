@@ -24,7 +24,7 @@ export default function Projects() {
   }, [category]);
 
   return (
-    <SectionContainer id="projects" title="Selected Projects" subtitle="아이디어를 코드로 바꾸고, 운영 가능한 형태로 정리한 작업입니다">
+    <SectionContainer id="projects" title="Projects" subtitle="아이디어를 코드로 바꾸고, 운영 가능한 형태로 정리한 작업입니다">
       <div className="flex flex-wrap gap-2 mb-8">
         {categoryOrder.map((key) => (
           <button
@@ -47,6 +47,7 @@ export default function Projects() {
         {filteredProjects.map((project, index) => (
           <motion.div
             key={project.id}
+            className="h-full"
             layout
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
