@@ -7,7 +7,8 @@ export const projects: Project[] = [
     title: "fastvote",
     description:
       "로그인 없이 링크 하나로 시작하는 실시간 익명 투표 플랫폼입니다. 공개/비공개, 비밀번호 보호, 복수 선택, 익명 댓글, 실시간 결과 반영까지 빠른 의사결정 흐름에 맞췄습니다.",
-    image: "/images/projects/project-5.jpg",
+    image: "/images/projects/fastvote-og.png",
+    logo: "/images/projects/fastvote-favicon.svg",
     tags: ["Next.js", "FastAPI", "Redis"],
     category: "other",
     outcome: "투표 생성부터 공유와 결과 확인까지를 최소 단계로 줄여 즉시 의견 수집이 가능한 흐름을 만든 작업",
@@ -35,7 +36,8 @@ export const projects: Project[] = [
     title: "55h",
     description:
       "SSH 호스트 탐색, 검색, 접속, 테스트, 삭제를 한 화면에서 처리하는 터미널 기반 TUI 도구입니다. `~/.ssh/config`와 `Include` 대상까지 재귀적으로 읽어 실사용 흐름에 맞췄습니다.",
-    image: "/images/projects/project-2.jpg",
+    image: "/images/projects/55h-banner.svg",
+    imageFit: "contain",
     tags: ["Go", "TUI", "SSH"],
     category: "other",
     outcome: "SSH 호스트 운영 작업을 터미널 안에서 끝내도록 줄여 접속과 관리 전환 비용을 낮춘 작업",
@@ -60,7 +62,8 @@ export const projects: Project[] = [
     title: "Task Trail",
     description:
       "날짜 기반 체크리스트, 칸반 보드, 커스텀 상태, 아카이브 검색, 처리량 리포트를 묶은 개인 작업 관리 앱입니다. 필요하면 AI 기반 작업 제안도 붙일 수 있게 설계했습니다.",
-    image: "/images/projects/project-1.jpg",
+    image: "/images/projects/task-trail.svg",
+    logo: "/images/projects/task-trail-favicon.ico",
     tags: ["Next.js", "Supabase", "Tailwind CSS"],
     category: "fullstack",
     outcome: "체크리스트와 칸반, 이력 조회를 한 흐름으로 묶어 개인 실행 루틴을 끊기지 않게 만든 작업",
@@ -85,7 +88,7 @@ export const projects: Project[] = [
     title: "TabNova",
     description:
       "브라우저 탭을 더 가볍게 정리하고 다시 꺼내 볼 수 있도록 구성한 탭 관리 도구입니다. 많은 탭을 띄운 상태에서도 맥락을 잃지 않도록 설계했습니다.",
-    image: "/images/projects/project-4.jpg",
+    image: "/images/projects/tabnova.svg",
     tags: ["React", "Browser Extension", "UX"],
     category: "web",
     outcome: "탭 정리와 복원 흐름을 단순화해 브라우저 작업 환경의 혼잡도를 낮춘 작업",
@@ -110,7 +113,8 @@ export const projects: Project[] = [
     title: "Pomodoro Timer Extension",
     description:
       "팝업이 닫혀도 타이머가 계속 동작하도록 MV3 서비스 워커 중심으로 설계한 크롬 포모도로 익스텐션입니다. 알림, 사운드, 배지 업데이트, 옵션 화면까지 포함합니다.",
-    image: "/images/projects/project-3.jpg",
+    image: "/images/projects/pomodoro-timer-extension.svg",
+    logo: "/images/projects/pomodoro-icon-128.png",
     tags: ["React", "TypeScript", "Chrome Extension"],
     category: "web",
     outcome: "팝업 생명주기에 흔들리지 않는 타이머 상태 관리를 구현해 브라우저 안 집중 루틴의 신뢰성을 높인 작업",

@@ -1,0 +1,25 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#07100A"/>
+  <rect x="68" y="68" width="1464" height="764" rx="40" fill="#0D1711" stroke="#294636"/>
+  <rect x="128" y="128" width="1344" height="604" rx="28" fill="#08100C" stroke="#2F5440"/>
+  <rect x="168" y="166" width="1264" height="36" rx="18" fill="#102116"/>
+  <circle cx="196" cy="184" r="7" fill="#7FF4B4"/>
+  <circle cx="224" cy="184" r="7" fill="#57C78B"/>
+  <circle cx="252" cy="184" r="7" fill="#2A8C59"/>
+  <rect x="176" y="232" width="392" height="454" rx="20" fill="#0D1711" stroke="#22392D"/>
+  <rect x="208" y="270" width="128" height="18" rx="9" fill="#D9FFE7"/>
+  <rect x="208" y="322" width="328" height="52" rx="14" fill="#0F2218"/>
+  <rect x="208" y="392" width="328" height="52" rx="14" fill="#0F2218"/>
+  <rect x="208" y="462" width="328" height="52" rx="14" fill="#143120" stroke="#58C98A"/>
+  <rect x="208" y="532" width="328" height="52" rx="14" fill="#0F2218"/>
+  <rect x="608" y="232" width="784" height="454" rx="20" fill="#0D1711" stroke="#22392D"/>
+  <rect x="648" y="274" width="180" height="22" rx="11" fill="#D9FFE7"/>
+  <rect x="648" y="332" width="704" height="28" rx="14" fill="#183323"/>
+  <rect x="648" y="386" width="704" height="28" rx="14" fill="#183323"/>
+  <rect x="648" y="440" width="704" height="28" rx="14" fill="#183323"/>
+  <rect x="648" y="522" width="132" height="48" rx="24" fill="#58C98A"/>
+  <rect x="798" y="522" width="132" height="48" rx="24" fill="#1C3829"/>
+  <rect x="948" y="522" width="132" height="48" rx="24" fill="#1C3829"/>
+  <text x="140" y="785" fill="#D9FFE7" font-family="Courier New, monospace" font-size="58" font-weight="700">55H</text>
+  <text x="140" y="828" fill="#7DB496" font-family="Arial, sans-serif" font-size="24">Terminal-first SSH host manager</text>
+</svg>

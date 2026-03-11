@@ -1,0 +1,28 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#08111F"/>
+  <rect x="70" y="70" width="1460" height="760" rx="40" fill="url(#bg)"/>
+  <rect x="130" y="128" width="520" height="420" rx="28" fill="#0F1E31" stroke="#2A486A"/>
+  <rect x="182" y="188" width="260" height="28" rx="14" fill="#D9ECFF"/>
+  <rect x="182" y="246" width="366" height="18" rx="9" fill="#6285A8"/>
+  <rect x="182" y="310" width="398" height="62" rx="18" fill="#132A43" stroke="#315376"/>
+  <rect x="214" y="330" width="212" height="22" rx="11" fill="#F5FBFF"/>
+  <rect x="182" y="392" width="398" height="62" rx="18" fill="#132A43" stroke="#315376"/>
+  <rect x="214" y="412" width="248" height="22" rx="11" fill="#F5FBFF"/>
+  <rect x="182" y="474" width="180" height="42" rx="21" fill="#48D59E"/>
+  <rect x="890" y="156" width="470" height="540" rx="32" fill="#0F1E31" stroke="#2A486A"/>
+  <rect x="954" y="220" width="208" height="26" rx="13" fill="#D9ECFF"/>
+  <rect x="954" y="286" width="250" height="24" rx="12" fill="#F5FBFF"/>
+  <rect x="954" y="328" width="274" height="24" rx="12" fill="#6BE4AE"/>
+  <rect x="954" y="370" width="196" height="24" rx="12" fill="#7ED0FF"/>
+  <path d="M1032 518C1032 461.667 1077.67 416 1134 416V416C1190.33 416 1236 461.667 1236 518V518C1236 574.333 1190.33 620 1134 620V620C1077.67 620 1032 574.333 1032 518V518Z" fill="#152D46"/>
+  <path d="M1134 470L1168.64 490V530L1134 550L1099.36 530V490L1134 470Z" fill="#7ED0FF"/>
+  <path d="M181 748H1419" stroke="#34587C" stroke-width="2" stroke-dasharray="10 14"/>
+  <text x="140" y="764" fill="#D8EBFF" font-family="Arial, sans-serif" font-size="56" font-weight="700">FASTVOTE</text>
+  <text x="140" y="812" fill="#7FA7CC" font-family="Arial, sans-serif" font-size="24">Realtime anonymous voting for fast decisions</text>
+  <defs>
+    <linearGradient id="bg" x1="70" y1="70" x2="1530" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102038"/>
+      <stop offset="1" stop-color="#0B1625"/>
+    </linearGradient>
+  </defs>
+</svg>

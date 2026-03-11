@@ -10,6 +10,8 @@ export interface Project {
   title: string;
   description: string;
   image: string;
+  imageFit?: "cover" | "contain";
+  logo?: string;
   tags: string[];
   category: "web" | "mobile" | "fullstack" | "other";
   outcome: string;

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
@@ -40,6 +41,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const imageFitClass = project.imageFit === "contain" ? "object-contain p-6" : "object-cover";
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#04050f] px-6 py-24">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
@@ -57,6 +60,32 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </Link>
 
         <section className="mt-10 rounded-[28px] border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-cyan-950/20 backdrop-blur md:p-10">
+          <div className="relative mb-8 aspect-[16/7] overflow-hidden rounded-[22px] border border-white/10">
+            <Image
+              src={project.image}
+              alt={`${project.title} banner`}
+              fill
+              className={imageFitClass}
+              sizes="(min-width: 1120px) 1120px, 100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-transparent" />
+
+            {project.logo ? (
+              <div className="absolute bottom-6 right-6 rounded-[24px] border border-white/12 bg-slate-950/78 p-3 shadow-xl shadow-slate-950/40 backdrop-blur">
+                <div className="relative h-16 w-16 overflow-hidden rounded-2xl">
+                  <Image
+                    src={project.logo}
+                    alt={`${project.title} logo`}
+                    fill
+                    className="object-contain"
+                    sizes="64px"
+                  />
+                </div>
+              </div>
+            ) : null}
+          </div>
+
           <p className="text-xs font-mono uppercase tracking-[0.28em] text-cyan-300/90">{project.category}</p>
           <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">{project.title}</h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">{project.description}</p>

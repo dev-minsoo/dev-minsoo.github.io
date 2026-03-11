@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 import { Project } from "@/types";
@@ -19,6 +20,7 @@ const gradients = [
 
 export default function ProjectCard({ project, index }: Props) {
   const gradientClass = gradients[index % gradients.length];
+  const imageFitClass = project.imageFit === "contain" ? "object-contain p-3" : "object-cover";
 
   return (
     <motion.article className="h-full" whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
@@ -29,7 +31,31 @@ export default function ProjectCard({ project, index }: Props) {
           aria-label={`${project.title} 상세 보기`}
         />
 
-        <div className={`h-40 rounded-xl bg-gradient-to-br ${gradientClass} border border-white/10`} />
+        <div className="relative h-40 overflow-hidden rounded-xl border border-white/10">
+          <Image
+            src={project.image}
+            alt={`${project.title} banner`}
+            fill
+            className={`${imageFitClass} transition-transform duration-500 group-hover:scale-[1.03]`}
+            sizes="(min-width: 1280px) 360px, (min-width: 768px) 50vw, 100vw"
+          />
+          <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} mix-blend-screen opacity-65`} />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+
+          {project.logo ? (
+            <div className="absolute bottom-4 right-4 z-10 rounded-2xl border border-white/15 bg-slate-950/75 p-2.5 shadow-lg shadow-slate-950/40 backdrop-blur">
+              <div className="relative h-10 w-10 overflow-hidden rounded-xl">
+                <Image
+                  src={project.logo}
+                  alt={`${project.title} logo`}
+                  fill
+                  className="object-contain"
+                  sizes="40px"
+                />
+              </div>
+            </div>
+          ) : null}
+        </div>
 
         <div className="relative z-10 flex-1 mt-5">
           <p className="text-xs font-mono text-cyan-200 uppercase tracking-[0.2em]">{project.category}</p>
