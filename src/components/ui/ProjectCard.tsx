@@ -21,16 +21,47 @@ const gradients = [
 export default function ProjectCard({ project, index }: Props) {
   const gradientClass = gradients[index % gradients.length];
   const imageFitClass = project.imageFit === "contain" ? "object-contain p-3" : "object-cover";
+  const actionLinks = project.demoFirst
+    ? [
+        project.links.demo
+          ? {
+              key: "demo",
+              href: project.links.demo,
+              label: "Demo",
+              icon: ExternalLink,
+            }
+          : null,
+        project.links.github
+          ? {
+              key: "github",
+              href: project.links.github,
+              label: "Code",
+              icon: Github,
+            }
+          : null,
+      ].filter(Boolean)
+    : [
+        project.links.github
+          ? {
+              key: "github",
+              href: project.links.github,
+              label: "Code",
+              icon: Github,
+            }
+          : null,
+        project.links.demo
+          ? {
+              key: "demo",
+              href: project.links.demo,
+              label: "Demo",
+              icon: ExternalLink,
+            }
+          : null,
+      ].filter(Boolean);
 
   return (
     <motion.article className="h-full" whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
       <Card hover className="group relative h-full flex flex-col border border-white/10">
-        <Link
-          href={`/projects/${project.slug}`}
-          className="absolute inset-0 z-0 rounded-2xl"
-          aria-label={`${project.title} 상세 보기`}
-        />
-
         <div className="relative h-40 overflow-hidden rounded-xl border border-white/10">
           <Image
             src={project.image}
@@ -43,8 +74,8 @@ export default function ProjectCard({ project, index }: Props) {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
 
           {project.logo ? (
-            <div className="absolute bottom-4 right-4 z-10 rounded-2xl border border-white/15 bg-slate-950/75 p-2.5 shadow-lg shadow-slate-950/40 backdrop-blur">
-              <div className="relative h-10 w-10 overflow-hidden rounded-xl">
+            <div className="absolute bottom-4 right-4 z-10 rounded-[14px] border border-white/45 bg-white/94 p-1 shadow-lg shadow-slate-950/40 backdrop-blur">
+              <div className="relative h-7 w-7 overflow-hidden rounded-[10px]">
                 <Image
                   src={project.logo}
                   alt={`${project.title} logo`}
@@ -59,10 +90,10 @@ export default function ProjectCard({ project, index }: Props) {
 
         <div className="relative z-10 flex-1 mt-5">
           <p className="text-xs font-mono text-cyan-200 uppercase tracking-[0.2em]">{project.category}</p>
-          <h3 className="mt-2 min-h-14 text-xl font-semibold text-white transition-colors group-hover:text-cyan-100">
+          <h3 className="mt-2 min-h-[2.5rem] text-xl font-semibold text-white transition-colors group-hover:text-cyan-100">
             {project.title}
           </h3>
-          <p className="mt-3 min-h-[5.25rem] text-sm leading-relaxed text-slate-400 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
+          <p className="mt-1.5 min-h-[5.25rem] text-sm leading-relaxed text-slate-400 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
             {project.description}
           </p>
 
@@ -82,32 +113,28 @@ export default function ProjectCard({ project, index }: Props) {
         </div>
 
         <div className="relative z-10 flex items-center justify-between gap-3 mt-6">
-          <span className="text-sm text-cyan-200/90 group-hover:text-cyan-100 transition-colors">View details</span>
+          <Link
+            href={`/projects/${project.slug}`}
+            className="text-sm text-cyan-200/90 transition-colors hover:text-cyan-100"
+          >
+            View details
+          </Link>
 
           <div className="flex gap-3">
-          {project.links.github ? (
+          {actionLinks.map((link) => {
+            const Icon = link.icon;
+            return (
             <a
-              href={project.links.github}
+              key={link.key}
+              href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
-              <Github size={18} />
-              <span className="text-sm">Code</span>
+              <Icon size={18} />
+              <span className="text-sm">{link.label}</span>
             </a>
-          ) : null}
-
-          {project.links.demo ? (
-            <a
-              href={project.links.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
-            >
-              <ExternalLink size={18} />
-              <span className="text-sm">Demo</span>
-            </a>
-          ) : null}
+          )})}
           </div>
         </div>
       </Card>

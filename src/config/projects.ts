@@ -4,13 +4,14 @@ export const projects: Project[] = [
   {
     id: "1",
     slug: "fastvote",
-    title: "fastvote",
+    title: "FastVote",
     description:
-      "로그인 없이 링크 하나로 시작하는 실시간 익명 투표 플랫폼입니다. 공개/비공개, 비밀번호 보호, 복수 선택, 익명 댓글, 실시간 결과 반영까지 빠른 의사결정 흐름에 맞췄습니다.",
+      "로그인 없이 투표 링크를 만들고, WebSocket 기반으로 결과를 실시간 반영하는 익명 투표 플랫폼입니다.",
     image: "/images/projects/fastvote-og.png",
     logo: "/images/projects/fastvote-favicon.svg",
+    demoFirst: true,
     tags: ["Next.js", "FastAPI", "Redis"],
-    category: "other",
+    category: "fullstack",
     outcome: "투표 생성부터 공유와 결과 확인까지를 최소 단계로 줄여 즉시 의견 수집이 가능한 흐름을 만든 작업",
     detail: {
       overview:
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     slug: "55h",
     title: "55h",
     description:
-      "SSH 호스트 탐색, 검색, 접속, 테스트, 삭제를 한 화면에서 처리하는 터미널 기반 TUI 도구입니다. `~/.ssh/config`와 `Include` 대상까지 재귀적으로 읽어 실사용 흐름에 맞췄습니다.",
+      "`~/.ssh/config`와 `Include` 파일을 파싱해 검색, 접속, 테스트, 삭제를 한 화면에서 처리하는 SSH TUI입니다.",
     image: "/images/projects/55h-banner.svg",
     imageFit: "contain",
     tags: ["Go", "TUI", "SSH"],
@@ -61,9 +62,8 @@ export const projects: Project[] = [
     slug: "task-trail",
     title: "Task Trail",
     description:
-      "날짜 기반 체크리스트, 칸반 보드, 커스텀 상태, 아카이브 검색, 처리량 리포트를 묶은 개인 작업 관리 앱입니다. 필요하면 AI 기반 작업 제안도 붙일 수 있게 설계했습니다.",
+      "날짜별 체크리스트, 칸반 상태 이동, 아카이브 복원, 처리량 리포트를 한 흐름으로 묶은 작업 관리 앱입니다.",
     image: "/images/projects/task-trail.svg",
-    logo: "/images/projects/task-trail-favicon.ico",
     tags: ["Next.js", "Supabase", "Tailwind CSS"],
     category: "fullstack",
     outcome: "체크리스트와 칸반, 이력 조회를 한 흐름으로 묶어 개인 실행 루틴을 끊기지 않게 만든 작업",
@@ -87,32 +87,33 @@ export const projects: Project[] = [
     slug: "tabnova",
     title: "TabNova",
     description:
-      "브라우저 탭을 더 가볍게 정리하고 다시 꺼내 볼 수 있도록 구성한 탭 관리 도구입니다. 많은 탭을 띄운 상태에서도 맥락을 잃지 않도록 설계했습니다.",
+      "Chrome 사이드패널에서 탭을 실시간으로 동기화하고, 드래그 정렬과 검색을 지원하는 세로형 탭 매니저입니다.",
     image: "/images/projects/tabnova.svg",
-    tags: ["React", "Browser Extension", "UX"],
+    logo: "/images/projects/tabnova-logo-128.png",
+    tags: ["React", "TypeScript", "Chrome Extension"],
     category: "web",
-    outcome: "탭 정리와 복원 흐름을 단순화해 브라우저 작업 환경의 혼잡도를 낮춘 작업",
+    outcome: "세로형 탭 탐색과 검색, 재정렬 흐름을 하나의 사이드바 경험으로 묶어 브라우저 전환 비용을 낮춘 작업",
     detail: {
       overview:
-        "TabNova는 브라우저 탭이 많아질수록 흐려지는 작업 맥락을 정리하기 위해 구상한 탭 관리 프로젝트입니다. 열린 탭을 단순히 닫는 것이 아니라 다시 꺼내 쓰기 쉬운 상태로 다루는 데 초점을 뒀습니다.",
+        "TabNova는 Chrome 안에서 탭을 더 직관적으로 다루기 위한 세로형 탭 매니저입니다. 많은 탭을 한눈에 보고 바로 전환하거나 정렬할 수 있게 하면서, 검색과 단축키 접근성까지 함께 챙기는 데 초점을 뒀습니다.",
       implementation: [
-        "열린 탭을 빠르게 정리하고 필요한 문맥만 다시 복원하는 흐름을 중심으로 제품 구조를 잡았습니다.",
-        "탭 수 자체보다 현재 집중 중인 문맥을 유지하는 것이 중요하다는 전제를 기반으로 UX를 설계했습니다.",
-        "세부 저장소 정보는 아직 연결 전이라 현재 포트폴리오에는 핵심 방향과 구조만 먼저 반영했습니다.",
+        "Chrome 사이드패널 안에서 열린 탭을 세로 레이아웃으로 보여주고 클릭 한 번으로 즉시 전환할 수 있게 구성했습니다.",
+        "드래그 앤 드롭 정렬과 hover 기반 빠른 닫기 동작을 넣어 탭 정리 흐름이 끊기지 않게 설계했습니다.",
+        "실시간 필터링 검색과 `Alt+B` 단축키를 지원해 많은 탭을 띄운 상태에서도 원하는 탭에 빠르게 도달할 수 있게 했습니다.",
       ],
       impact: [
-        "브라우저 작업 환경에서 발생하는 과도한 탭 혼잡을 정리 가능한 문제로 다시 정의한 프로젝트입니다.",
-        "향후 실제 저장소와 연결하면 확장 가능한 상세 템플릿 구조까지 먼저 마련해 두었습니다.",
+        "기본 탭 바보다 더 많은 정보를 한 화면에 보여줘 탭 탐색과 전환 속도를 높였습니다.",
+        "브라우저 탭 관리 문제를 단순 보조 기능이 아니라 별도 제품 경험으로 다룰 수 있음을 정리한 작업입니다.",
       ],
     },
-    links: {},
+    links: { github: "https://github.com/dev-minsoo/tabnova" },
   },
   {
     id: "5",
     slug: "pomodoro-timer-extension",
     title: "Pomodoro Timer Extension",
     description:
-      "팝업이 닫혀도 타이머가 계속 동작하도록 MV3 서비스 워커 중심으로 설계한 크롬 포모도로 익스텐션입니다. 알림, 사운드, 배지 업데이트, 옵션 화면까지 포함합니다.",
+      "서비스 워커 상태 머신과 `chrome.alarms`로 팝업이 닫혀도 세션이 유지되는 Chrome MV3 타이머 익스텐션입니다.",
     image: "/images/projects/pomodoro-timer-extension.svg",
     logo: "/images/projects/pomodoro-icon-128.png",
     tags: ["React", "TypeScript", "Chrome Extension"],

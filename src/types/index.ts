@@ -12,6 +12,7 @@ export interface Project {
   image: string;
   imageFit?: "cover" | "contain";
   logo?: string;
+  demoFirst?: boolean;
   tags: string[];
   category: "web" | "mobile" | "fullstack" | "other";
   outcome: string;

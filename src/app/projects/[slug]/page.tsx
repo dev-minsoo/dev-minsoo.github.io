@@ -42,6 +42,51 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   const imageFitClass = project.imageFit === "contain" ? "object-contain p-6" : "object-cover";
+  const actionLinks = project.demoFirst
+    ? [
+        project.links.demo
+          ? {
+              key: "demo",
+              href: project.links.demo,
+              label: "Demo",
+              icon: ExternalLink,
+              className:
+                "inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition-colors hover:border-cyan-200/70 hover:bg-cyan-300/15",
+            }
+          : null,
+        project.links.github
+          ? {
+              key: "github",
+              href: project.links.github,
+              label: "Code",
+              icon: Github,
+              className:
+                "inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5",
+            }
+          : null,
+      ].filter(Boolean)
+    : [
+        project.links.github
+          ? {
+              key: "github",
+              href: project.links.github,
+              label: "Code",
+              icon: Github,
+              className:
+                "inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5",
+            }
+          : null,
+        project.links.demo
+          ? {
+              key: "demo",
+              href: project.links.demo,
+              label: "Demo",
+              icon: ExternalLink,
+              className:
+                "inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition-colors hover:border-cyan-200/70 hover:bg-cyan-300/15",
+            }
+          : null,
+      ].filter(Boolean);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#04050f] px-6 py-24">
@@ -72,8 +117,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-transparent" />
 
             {project.logo ? (
-              <div className="absolute bottom-6 right-6 rounded-[24px] border border-white/12 bg-slate-950/78 p-3 shadow-xl shadow-slate-950/40 backdrop-blur">
-                <div className="relative h-16 w-16 overflow-hidden rounded-2xl">
+              <div className="absolute bottom-6 right-6 rounded-[16px] border border-white/45 bg-white/94 p-1.5 shadow-xl shadow-slate-950/40 backdrop-blur">
+                <div className="relative h-10 w-10 overflow-hidden rounded-[12px]">
                   <Image
                     src={project.logo}
                     alt={`${project.title} logo`}
@@ -102,29 +147,21 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            {project.links.github ? (
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5"
-              >
-                <Github size={16} />
-                Code
-              </a>
-            ) : null}
-
-            {project.links.demo ? (
-              <a
-                href={project.links.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition-colors hover:border-cyan-200/70 hover:bg-cyan-300/15"
-              >
-                <ExternalLink size={16} />
-                Demo
-              </a>
-            ) : null}
+            {actionLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.key}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={link.className}
+                >
+                  <Icon size={16} />
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
         </section>
 
