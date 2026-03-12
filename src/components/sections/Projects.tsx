@@ -25,12 +25,12 @@ export default function Projects() {
 
   return (
     <SectionContainer id="projects" title="Projects" subtitle="아이디어를 코드로 바꾸고, 운영 가능한 형태로 정리한 작업입니다">
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="mb-6 flex flex-wrap gap-2">
         {categoryOrder.map((key) => (
           <button
             key={key}
             className={cn(
-              "px-4 py-2 text-sm rounded-full border transition-colors",
+              "rounded-full border px-3.5 py-1.5 text-sm transition-colors",
               category === key ? "bg-slate-100 text-slate-900 border-white/20" : "text-slate-300 border-white/10 hover:border-white/30 hover:text-white"
             )}
             onClick={() => setCategory(key)}
@@ -41,7 +41,7 @@ export default function Projects() {
       </div>
 
       <motion.div
-        className="grid md:grid-cols-2 xl:grid-cols-3 gap-6"
+        className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
         layout
       >
         {filteredProjects.map((project, index) => (

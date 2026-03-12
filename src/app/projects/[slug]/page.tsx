@@ -49,7 +49,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const imageFitClass = project.imageFit === "contain" ? "object-contain p-6" : "object-cover";
+  const isContainedBanner = project.imageFit === "contain";
+  const imageFitClass = isContainedBanner ? "object-contain" : "object-cover";
   const actionLinks: ActionLink[] = (project.demoFirst
     ? [
         project.links.demo
@@ -113,7 +114,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </Link>
 
         <section className="mt-10 rounded-[28px] border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-cyan-950/20 backdrop-blur md:p-10">
-          <div className="relative mb-8 aspect-[16/7] overflow-hidden rounded-[22px] border border-white/10">
+          <div className="relative mb-8 aspect-[10/3] overflow-hidden rounded-[22px] border border-white/10 bg-slate-950/80">
             <Image
               src={project.image}
               alt={`${project.title} banner`}
@@ -122,21 +123,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               sizes="(min-width: 1120px) 1120px, 100vw"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-transparent" />
+            <div
+              className={
+                isContainedBanner
+                  ? "absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent"
+                  : "absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-transparent"
+              }
+            />
 
-            {project.logo ? (
-              <div className="absolute bottom-6 right-6 rounded-[16px] border border-white/45 bg-white/94 p-1.5 shadow-xl shadow-slate-950/40 backdrop-blur">
-                <div className="relative h-10 w-10 overflow-hidden rounded-[12px]">
-                  <Image
-                    src={project.logo}
-                    alt={`${project.title} logo`}
-                    fill
-                    className="object-contain"
-                    sizes="64px"
-                  />
-                </div>
-              </div>
-            ) : null}
           </div>
 
           <p className="text-xs font-mono uppercase tracking-[0.28em] text-cyan-300/90">{project.category}</p>
