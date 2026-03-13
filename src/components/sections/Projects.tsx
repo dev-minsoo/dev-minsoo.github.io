@@ -24,7 +24,7 @@ export default function Projects() {
   }, [category]);
 
   return (
-    <SectionContainer id="projects" title="Projects" subtitle="아이디어를 코드로 바꾸고, 운영 가능한 형태로 정리한 작업입니다">
+    <SectionContainer id="projects" title="Projects" subtitle="아이디어를 코드로 구현하고, 실제로 사용할 수 있는 형태로 다듬은 작업들입니다.">
       <div className="mb-6 flex flex-wrap gap-2">
         {categoryOrder.map((key) => (
           <button

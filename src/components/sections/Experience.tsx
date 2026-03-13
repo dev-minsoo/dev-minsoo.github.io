@@ -11,19 +11,19 @@ const experiences = [
     role: "Backend Developer",
     period: "2022.05 - 재직중",
     summary:
-      "서비스 백엔드 경험을 바탕으로 AI/ML 모델을 실제 서비스에 안전하게 연결하는 플랫폼 백엔드 역할을 수행하고 있습니다. 최근에는 검색 API 전환 과정에서 SDK 기반 트래픽 분할과 결과 수집 체계를 설계해 A/B 실험과 점진 배포가 가능한 운영 구조를 만들었습니다.",
+      "서비스 백엔드 경험을 바탕으로 AI/ML 모델을 실제 서비스에 안정적으로 연결하는 플랫폼 백엔드 역할을 수행하고 있습니다. 최근에는 검색 API 전환 과정에서 SDK 기반 트래픽 분할과 결과 수집 체계를 설계해, A/B 실험과 점진 배포가 가능한 운영 구조를 구축했습니다.",
     highlights: [
       "검색 API 전환을 위한 SDK 기반 A/B 실험 및 점진 배포 체계 구축",
-      "레이블링 품질 평가/피드백을 모델 재학습으로 연결하는 학습 피드백 루프 설계",
+      "레이블링 품질 평가와 피드백을 모델 재학습으로 연결하는 학습 피드백 루프 설계",
       "수억 건 규모 상품 이미지/메타데이터 ETL 및 증분 반영 파이프라인 구현",
-      "검색/평가 운영 플랫폼 개발로 데이터 수집-실험-개선 사이클 고도화",
+      "검색·평가 운영 플랫폼 개발로 데이터 수집부터 실험, 개선까지 이어지는 사이클 고도화",
     ],
   },
 ];
 
 export default function Experience() {
   return (
-    <SectionContainer id="experience" title="Experience" subtitle="회사 경력과 실무 중심 경험입니다">
+    <SectionContainer id="experience" title="Experience" subtitle="실무에서 문제를 정의하고 구조적으로 해결해 온 경험입니다.">
       <div className="space-y-5">
         {experiences.map((experience, index) => (
           <motion.div

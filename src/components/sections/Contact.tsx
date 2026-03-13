@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site";
 
 export default function Contact() {
   return (
-    <SectionContainer id="contact" title="Contact" subtitle="단단한 백엔드 설계와 데이터 실무 경험을 연결하여, 사용자에게 가치 있는 제품을 만듭니다.">
+    <SectionContainer id="contact" title="Contact" subtitle="안정적인 백엔드 설계와 데이터 실무 경험을 바탕으로, 사용자에게 가치 있는 제품을 만듭니다.">
       <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div
           initial={{ opacity: 0, x: -18 }}
@@ -19,9 +19,10 @@ export default function Contact() {
           className="glass-card rounded-3xl p-7"
         >
           <Mail className="w-12 h-12 text-cyan-300" />
-          <p className="mt-5 text-slate-300 leading-relaxed">
-            서비스 백엔드 개발부터 데이터/AI 파이프라인 구축까지, 안정적인 운영과 성장을 고민하는 개발자입니다. 새로운
-            도전에 대해 함께 이야기 나누고 싶다면 언제든 메일로 연락 부탁드립니다.
+          <p className="mt-5 whitespace-pre-line text-slate-300 leading-relaxed">
+            서비스 백엔드 개발부터 데이터·AI 파이프라인 구축까지, 안정적인 운영과 성장을 함께 고민하는 개발자입니다.
+            {"\n"}
+            새로운 도전에 대해 이야기 나누고 싶다면 언제든 메일로 연락해 주세요.
           </p>
           <Button href={`mailto:${siteConfig.email}`} variant="primary" className="mt-8">
             메일로 바로 문의하기
