@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { getProjectBySlug, projects } from "@/config/projects";
+import { ProjectTroubleshootingItem } from "@/types";
 
 interface PageProps {
   params: Promise<{
@@ -29,6 +30,80 @@ function BulletList({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+function FeatureGrid({ items, secondaryItems }: { items: string[]; secondaryItems?: string[] }) {
+  return (
+    <div className="space-y-5">
+      <div className="grid gap-3 md:grid-cols-2">
+        {items.map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl border border-white/8 bg-[#0f1a2b] px-5 py-4 text-sm leading-7 text-slate-200"
+          >
+            <div className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
+              <span>{item}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {secondaryItems?.length ? (
+        <div className="border-t border-white/8 pt-4">
+          <p className="text-xs uppercase tracking-[0.16em] text-slate-500">추가 기능</p>
+          <p className="mt-2 text-sm leading-7 text-slate-400">{secondaryItems.join(" · ")}</p>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function TroubleshootingList({ items }: { items: ProjectTroubleshootingItem[] }) {
+  return (
+    <div className="space-y-4">
+      {items.map((item) => (
+        <div key={item.title} className="rounded-2xl border border-white/8 bg-[#0f1a2b] px-5 py-4">
+          <p className="text-sm font-semibold text-white">{item.title}</p>
+          <p className="mt-3 text-sm leading-7 text-slate-400">{item.problem}</p>
+          <div className="mt-4 rounded-xl border border-cyan-300/10 bg-cyan-300/[0.04] px-4 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-200">Solution</p>
+            <p className="mt-2 text-sm leading-7 text-slate-300">{item.solution}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DetailBlock({
+  title,
+  content,
+  items,
+  secondaryItems,
+  className = "",
+}: {
+  title: string;
+  content?: string;
+  items?: string[];
+  secondaryItems?: string[];
+  className?: string;
+}) {
+  return (
+    <article className={`rounded-[24px] border border-white/8 bg-[#0b1423]/92 p-7 ${className}`}>
+      <p className="text-sm font-semibold tracking-[0.02em] text-white">{title}</p>
+      {content ? <p className="mt-5 leading-8 text-slate-300">{content}</p> : null}
+      {items?.length ? (
+        <div className={content ? "mt-6" : "mt-5"}>
+          {title === "핵심 기능" || title === "Core Features" ? (
+            <FeatureGrid items={items} secondaryItems={secondaryItems} />
+          ) : (
+            <BulletList items={items} />
+          )}
+        </div>
+      ) : null}
+    </article>
   );
 }
 
@@ -109,6 +184,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             }
           : null,
       ]).filter((link): link is ActionLink => link !== null);
+  const headerIntro = project.detail.background ?? project.detail.overview;
+  const background = project.detail.overview;
+  const techStack = project.detail.techStack ?? project.tags;
+  const coreFeatures = project.detail.coreFeatures ?? project.detail.implementation;
+  const secondaryFeatures = project.detail.secondaryFeatures;
+  const troubleshooting = project.detail.troubleshooting;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#04050f] px-6 py-24">
@@ -126,7 +207,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           Back to projects
         </Link>
 
-        <section className="mt-10 rounded-[28px] border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-cyan-950/20 backdrop-blur md:p-10">
+        <section className="mt-10 rounded-[28px] border border-white/8 bg-[#0b1423]/94 p-8 shadow-2xl shadow-cyan-950/20 md:p-10">
           <div className="relative mb-8 aspect-[10/3] overflow-hidden rounded-[22px] border border-white/10 bg-slate-950/80">
             <Image
               src={project.image}
@@ -145,15 +226,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             />
           </div>
 
+          <div className="mb-2 inline-flex rounded-full border border-cyan-300/15 bg-cyan-300/[0.06] px-3 py-1 text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-200">
+            Case Study
+          </div>
           <p className="text-xs font-mono uppercase tracking-[0.28em] text-cyan-300/90">{project.category}</p>
           <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">{project.title}</h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">{project.description}</p>
+          <p className="mt-5 max-w-4xl text-[15px] leading-8 text-slate-400 md:text-base">{headerIntro}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            {project.tags.map((tag) => (
+            {techStack.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/12 bg-white/[0.03] px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-slate-200"
+                className="rounded-md border border-white/8 bg-white/[0.025] px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-slate-200"
               >
                 {tag}
               </span>
@@ -180,26 +265,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </section>
 
         <section className="mt-8 grid gap-6">
-          <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Overview</p>
-            <p className="mt-5 leading-8 text-slate-300">{project.detail.overview}</p>
-          </article>
-
-          <div className="grid gap-6 lg:grid-cols-2">
-            <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Implementation</p>
+          <DetailBlock title="Tech Stack" items={techStack} />
+          <DetailBlock title="Background" content={background} />
+          <DetailBlock title="Core Features" items={coreFeatures} secondaryItems={secondaryFeatures} />
+          {troubleshooting?.length ? (
+            <article className="rounded-[24px] border border-white/8 bg-[#0b1423]/92 p-7">
+              <p className="text-sm font-semibold tracking-[0.02em] text-white">Troubleshooting</p>
               <div className="mt-5">
-                <BulletList items={project.detail.implementation} />
+                <TroubleshootingList items={troubleshooting} />
               </div>
             </article>
-
-            <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Impact</p>
-              <div className="mt-5">
-                <BulletList items={project.detail.impact} />
-              </div>
-            </article>
-          </div>
+          ) : (
+            <DetailBlock title="Troubleshooting" items={project.detail.impact} />
+          )}
         </section>
       </div>
     </main>

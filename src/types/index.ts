@@ -1,7 +1,18 @@
+export interface ProjectTroubleshootingItem {
+  title: string;
+  problem: string;
+  solution: string;
+}
+
 export interface ProjectDetailTemplate {
   overview: string;
   implementation: string[];
   impact: string[];
+  background?: string;
+  techStack?: string[];
+  coreFeatures?: string[];
+  secondaryFeatures?: string[];
+  troubleshooting?: ProjectTroubleshootingItem[];
 }
 
 export interface Project {

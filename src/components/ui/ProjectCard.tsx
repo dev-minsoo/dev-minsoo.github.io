@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { Project } from "@/types";
 import Card from "./Card";
 
@@ -20,9 +20,9 @@ type ActionLink = {
 };
 
 const gradients = [
-  "from-cyan-400/40 to-blue-700/60",
-  "from-violet-500/40 to-indigo-700/60",
-  "from-emerald-400/40 to-teal-700/60",
+  "from-cyan-400/25 to-blue-700/45",
+  "from-sky-400/20 to-indigo-700/45",
+  "from-emerald-400/20 to-teal-700/45",
 ];
 
 export default function ProjectCard({ project, index }: Props) {
@@ -70,8 +70,8 @@ export default function ProjectCard({ project, index }: Props) {
 
   return (
     <motion.article className="h-full" whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-      <Card hover className="group relative flex h-full flex-col border border-white/10 p-4 sm:p-5">
-        <div className="relative aspect-[10/3] overflow-hidden rounded-lg border border-white/10 bg-slate-950/80">
+      <Card hover className="group relative flex h-full flex-col p-3 sm:p-3.5">
+        <div className="relative aspect-[10/3] overflow-hidden rounded-[16px] border border-white/8 bg-[#0a111d]">
           <Image
             src={project.image}
             alt={`${project.title} banner`}
@@ -82,59 +82,66 @@ export default function ProjectCard({ project, index }: Props) {
           <div
             className={`absolute inset-0 bg-gradient-to-br ${gradientClass} ${isContainedBanner ? "opacity-35" : "mix-blend-screen opacity-65"}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
-
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a111d]/80 via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 mt-4 flex-1">
-          <p className="text-xs font-mono text-cyan-200 uppercase tracking-[0.2em]">{project.category}</p>
-          <h3 className="mt-1.5 min-h-[2.25rem] text-lg font-semibold text-white transition-colors group-hover:text-cyan-100 sm:text-[1.15rem]">
+        <div className="relative z-10 mt-4 flex-1 px-1">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-cyan-200/90">{project.category}</p>
+            <div className="flex items-center gap-2.5 text-slate-500">
+              {actionLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.key}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-slate-200"
+                    aria-label={link.label}
+                  >
+                    <Icon size={14} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          <h3 className="mt-2 min-h-[2.4rem] text-xl font-semibold text-white transition-colors group-hover:text-cyan-100">
             {project.title}
           </h3>
-          <p className="mt-1 min-h-[4rem] text-sm leading-6 text-slate-400 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
+          <p className="mt-2 min-h-[4rem] text-sm leading-6 text-slate-400 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
             {project.description}
           </p>
 
           {project.outcome ? (
-            <div className="mt-2 min-h-[3.5rem] rounded-lg border border-cyan-300/25 bg-cyan-900/20 px-3 py-2 text-[11px] leading-5 text-cyan-100 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
+            <div className="mt-3 min-h-[3.5rem] rounded-xl border border-cyan-300/12 bg-cyan-400/[0.04] px-3 py-2.5 text-[11px] leading-5 text-cyan-100/90 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
               {project.outcome}
             </div>
           ) : null}
 
-          <div className="mt-2.5 flex flex-wrap gap-1.5">
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-white/15 px-2 py-1 text-[11px] text-slate-300">
+              <span
+                key={tag}
+                className="rounded-md border border-white/8 bg-white/[0.025] px-2 py-1 text-[11px] text-slate-300"
+              >
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="relative z-10 mt-4 flex items-center justify-between gap-3">
+        <div className="relative z-10 mt-4 flex items-center justify-between gap-3 border-t border-white/8 px-1 pt-4">
           <Link
             href={`/projects/${project.slug}`}
-            className="text-sm text-cyan-200/90 transition-colors hover:text-cyan-100"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-200/90 transition-colors hover:text-cyan-100"
           >
-            View details
+            자세히 보기
+            <ArrowRight size={14} />
           </Link>
 
-          <div className="flex gap-2.5">
-            {actionLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.key}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-slate-300 transition-colors hover:text-white"
-                >
-                  <Icon size={16} />
-                  <span>{link.label}</span>
-                </a>
-              );
-            })}
-          </div>
+          <span className="text-xs text-slate-500">프로젝트 보기</span>
         </div>
       </Card>
     </motion.article>
