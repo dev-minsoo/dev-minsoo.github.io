@@ -19,6 +19,19 @@ type ActionLink = {
   className: string;
 };
 
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-4 text-slate-300">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3 leading-7">
+          <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
@@ -130,7 +143,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   : "absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-transparent"
               }
             />
-
           </div>
 
           <p className="text-xs font-mono uppercase tracking-[0.28em] text-cyan-300/90">{project.category}</p>
@@ -167,42 +179,27 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <section className="mt-8 grid gap-6">
           <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Overview</p>
             <p className="mt-5 leading-8 text-slate-300">{project.detail.overview}</p>
           </article>
 
-          <aside className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Outcome</p>
-            <p className="mt-5 leading-8 text-slate-300">{project.outcome}</p>
-          </aside>
-        </section>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Implementation</p>
+              <div className="mt-5">
+                <BulletList items={project.detail.implementation} />
+              </div>
+            </article>
 
-        <section className="mt-6 grid gap-6 lg:grid-cols-2">
-          <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Implementation</p>
-            <ul className="mt-5 space-y-4 text-slate-300">
-              {project.detail.implementation.map((item) => (
-                <li key={item} className="flex gap-3 leading-7">
-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Impact</p>
-            <ul className="mt-5 space-y-4 text-slate-300">
-              {project.detail.impact.map((item) => (
-                <li key={item} className="flex gap-3 leading-7">
-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+            <article className="rounded-[24px] border border-white/10 bg-slate-950/60 p-7 backdrop-blur">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Impact</p>
+              <div className="mt-5">
+                <BulletList items={project.detail.impact} />
+              </div>
+            </article>
+          </div>
         </section>
       </div>
     </main>
