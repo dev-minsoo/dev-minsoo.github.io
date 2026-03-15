@@ -3,7 +3,7 @@ import { SiteConfig } from "@/types";
 export const siteConfig: SiteConfig = {
   name: "우민수",
   email: "minsoo010@naver.com",
-  tagline: "기술을 빠르게 익히고 문제를 끝까지 해결하는 개발자 우민수입니다.",
+  tagline: "기술과 함께 나아가는 개발자 우민수입니다.",
   description:
     "백엔드 개발자로 커리어를 시작해 서비스 구조와 운영 안정성을 우선해 왔습니다.\n최근에는 검색 고도화 프로젝트를 수행하며 데이터 파이프라인 구축, AI 모델 기반 데이터 품질 개선, A/B 테스트 플랫폼 설계와 운영까지 경험을 확장하고 있습니다.\n특정 영역에 스스로를 한정하기보다 필요한 기술을 빠르게 익혀 실무 문제 해결로 연결합니다.",
   bio:
