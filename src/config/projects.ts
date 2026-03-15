@@ -241,16 +241,47 @@ export const projects: Project[] = [
     slug: "pomodoro-timer-extension",
     title: "Pomodoro Timer Extension",
     description:
-      "팝업이 닫혀도 타이머가 계속 돌아가도록 만든 Chrome MV3 포모도로 익스텐션입니다.",
+      "Chrome MV3 환경에서 팝업이 닫혀도 타이머 상태가 유지되도록 설계한 포모도로 타이머 확장입니다.",
     image: "/images/projects/pomodoro-banner.png",
     imageFit: "contain",
     logo: "/images/projects/pomodoro-icon-128.png",
     tags: ["React", "TypeScript", "Chrome Extension"],
     category: "web",
-    outcome: "팝업을 닫아도 세션이 끊기지 않는 타이머 구조를 만든 작업",
+    outcome: "브라우저 확장의 짧은 팝업 생명주기 안에서도 실제로 계속 사용할 수 있는 타이머 경험을 만든 프로젝트",
     detail: {
       overview:
-        "Pomodoro Timer Extension은 MV3 환경에서 자주 깨지는 팝업 기반 타이머 문제를 해결하기 위해 만든 익스텐션입니다. 상태는 백그라운드에 두고, 팝업은 그 상태를 보여주고 제어하는 역할만 담당하도록 분리했습니다.",
+        "이 프로젝트는 브라우저 확장의 짧은 팝업 생명주기 때문에 발생하는 타이머 끊김 문제를 해결하는 데 초점을 맞췄습니다.",
+      background:
+        "단순히 팝업 안에서 시간을 세는 방식이 아니라, 백그라운드 서비스 워커가 세션 상태를 소유하고 팝업과 옵션 페이지는 그 상태를 조회하거나 조작하는 구조로 만들었습니다. 사용자는 포커스, 짧은 휴식, 긴 휴식 세션을 전환하면서 작업 흐름을 유지할 수 있고, 알림, 사운드, 배지 표시, 표시 모드, 테마 같은 설정도 조정할 수 있습니다.",
+      techStack: ["React", "TypeScript", "Chrome Extension MV3"],
+      coreFeatures: [
+        "포커스, 짧은 휴식, 긴 휴식 세션 전환",
+        "시작, 일시정지, 초기화, 건너뛰기 제어",
+        "긴 휴식 간격 설정 및 자동 세션 전환",
+        "브라우저 알림과 사운드 알림",
+      ],
+      secondaryFeatures: [
+        "오프스크린 문서를 활용한 사운드 재생 및 미리보기",
+        "확장 아이콘 배지에 남은 시간 표시",
+        "텍스트형 타이머와 링형 진행 표시 전환",
+        "컴팩트 모드와 라이트/다크 테마 지원",
+      ],
+      troubleshooting: [
+        {
+          title: "팝업이 닫혀도 세션 상태가 유지돼야 했음",
+          problem:
+            "기존의 단순한 포모도로 예제는 팝업이 닫히면 상태가 사라지거나 MV3 환경에서 동작이 불안정해지기 쉬웠습니다.",
+          solution:
+            "타이머 상태는 백그라운드 서비스 워커에 저장하고 `chrome.storage.local`에 함께 보존했습니다. 팝업은 현재 상태를 조회해 화면만 갱신하도록 분리해, 팝업을 닫았다 다시 열어도 세션이 이어지게 했습니다.",
+        },
+        {
+          title: "MV3 제약 안에서 세션 완료 처리가 안정적이어야 했음",
+          problem:
+            "세션 종료 시점과 배지 업데이트를 단순 타이머로 처리하면 브라우저 확장 런타임 제약 때문에 불안정해질 수 있었습니다.",
+          solution:
+            "`chrome.alarms`로 세션 종료 알람과 1분 단위 배지 갱신 알람을 분리해 관리하고, 사운드 재생은 오프스크린 문서에서 처리해 MV3 환경에서도 안정적으로 동작하도록 구성했습니다.",
+        },
+      ],
       implementation: [
         "백그라운드 서비스 워커를 단일 상태 소스로 두고 `chrome.alarms`로 세션 전환을 관리했습니다.",
         "Popup, Options, Offscreen 런타임을 분리해 UI, 설정, 오디오 재생 책임이 섞이지 않도록 했습니다.",
