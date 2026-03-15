@@ -70,15 +70,46 @@ export const projects: Project[] = [
     slug: "55h",
     title: "55h",
     description:
-      "`~/.ssh/config`와 `Include` 파일을 읽어 검색, 접속, 테스트, 삭제, 추가를 한 화면에서 처리하는 SSH TUI 도구입니다.",
+      "흩어져 있는 `~/.ssh/config` 환경을 검색 가능하고 키보드 중심으로 다룰 수 있게 만든 터미널 기반 SSH 호스트 매니저입니다.",
     image: "/images/projects/55h-banner.svg",
     imageFit: "contain",
     tags: ["Go", "TUI", "SSH"],
     category: "other",
-    outcome: "SSH 호스트 관리할 때 반복되던 확인과 실행 작업을 터미널 안으로 모은 작업",
+    outcome: "SSH 호스트 관리에서 반복되던 탐색과 실행 작업을 하나의 TUI 흐름으로 묶은 프로젝트",
     detail: {
       overview:
-        "55h는 SSH 호스트 관리 작업을 더 빠르게 처리하기 위해 만든 터미널 도구입니다. `~/.ssh/config`와 `Include` 대상까지 읽어 호스트를 찾고, 접속하고, 정리하는 흐름을 하나의 TUI 안에서 끝낼 수 있게 했습니다.",
+        "`55h`는 SSH 호스트를 탐색하고, 검색하고, 테스트하고, 추가하고, 바로 접속할 수 있도록 만든 Go 기반 터미널 UI 도구입니다.",
+      background:
+        "`55h`는 SSH 호스트 관리에서 반복적으로 발생하는 불편을 줄이는 데 집중한 프로젝트입니다. 설정 파일을 직접 열어 별칭을 찾고 별도로 `ssh` 명령을 실행하는 대신, 하나의 TUI 안에서 호스트 목록 확인, 상세 정보 조회, 검색, 실행까지 이어지는 흐름을 제공하도록 구성했습니다.",
+      techStack: ["Go", "tview", "tcell"],
+      coreFeatures: [
+        "`~/.ssh/config`와 `Include` 지시자를 재귀적으로 따라가며 파싱",
+        "SSH 호스트 목록과 상세 정보를 2패널 TUI로 제공",
+        "alias, hostname, user, port 기준의 퍼지 검색 지원",
+        "선택한 호스트에 대해 시스템 `ssh` 바이너리로 즉시 접속",
+      ],
+      secondaryFeatures: [
+        "짧은 타임아웃 기반의 인앱 SSH 연결 테스트",
+        "설정 파일 내 `Host` 블록 삭제",
+        "`55h add ssh ...` 형태의 CLI로 새 호스트 추가",
+        "사용자 설정 디렉터리에 테마 설정과 마지막 접속 시간 저장",
+      ],
+      troubleshooting: [
+        {
+          title: "흩어진 SSH 설정을 한 흐름에서 다루기 어려웠음",
+          problem:
+            "기본 설정 파일만 읽는 방식으로는 실제 사용 중인 호스트 구성을 온전히 다루기 어려웠고, `Include`로 나뉜 파일까지 함께 추적해야 했습니다.",
+          solution:
+            "`Host` 블록을 읽고 상대 경로와 glob 패턴 기반 `Include`를 처리하는 SSH 설정 파서를 직접 구현해, 기본 파일과 include된 파일의 항목을 함께 탐색할 수 있게 했습니다.",
+        },
+        {
+          title: "TUI에서 바로 접속할 때 터미널 제어가 자연스러워야 했음",
+          problem:
+            "도구 안에서 접속 명령을 실행하더라도 별도 래퍼 프로세스가 남으면 터미널 제어가 어색해질 수 있었습니다.",
+          solution:
+            "접속 시 `syscall.Exec`를 사용해 현재 프로세스를 `ssh` 세션으로 치환함으로써, TUI에서 선택한 뒤 바로 자연스럽게 터미널 세션으로 이어지도록 구성했습니다.",
+        },
+      ],
       implementation: [
         "호스트 목록과 상세 패널을 함께 보여줘 탐색 중에도 바로 실행할 수 있게 했습니다.",
         "접속, 연결 테스트, 삭제, 추가 같은 자주 쓰는 작업을 키보드 중심으로 처리하도록 설계했습니다.",
