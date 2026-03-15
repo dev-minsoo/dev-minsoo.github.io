@@ -74,7 +74,7 @@ export const projects: Project[] = [
     image: "/images/projects/55h-banner.svg",
     imageFit: "contain",
     tags: ["Go", "TUI", "SSH"],
-    category: "backend",
+    category: "other",
     outcome: "여러 SSH 접속 대상을 CLI와 TUI 안에서 더 빠르게 등록하고 찾아 접근할 수 있게 만든 프로젝트",
     detail: {
       overview:
@@ -307,7 +307,7 @@ export const projects: Project[] = [
     image: "/images/projects/signal-be-banner.svg",
     imageFit: "contain",
     tags: ["FastAPI", "MongoDB", "OpenAI"],
-    category: "other",
+    category: "backend",
     outcome: "경상북도 산불 이슈를 배경으로 시민 제보 기반 조기 감지와 산불 상태 관리를 하나의 백엔드 API 흐름으로 연결한 해커톤 프로젝트",
     detail: {
       overview:
