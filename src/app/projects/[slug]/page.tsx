@@ -184,7 +184,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             }
           : null,
       ]).filter((link): link is ActionLink => link !== null);
-  const headerIntro = project.detail.background ?? project.detail.overview;
   const background = project.detail.overview;
   const techStack = project.detail.techStack ?? project.tags;
   const coreFeatures = project.detail.coreFeatures ?? project.detail.implementation;
@@ -232,7 +231,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <p className="text-xs font-mono uppercase tracking-[0.28em] text-cyan-300/90">{project.category}</p>
           <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">{project.title}</h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">{project.description}</p>
-          <p className="mt-5 max-w-4xl text-[15px] leading-8 text-slate-400 md:text-base">{headerIntro}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             {techStack.map((tag) => (
@@ -265,7 +263,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </section>
 
         <section className="mt-8 grid gap-6">
-          <DetailBlock title="Tech Stack" items={techStack} />
           <DetailBlock title="Background" content={background} />
           <DetailBlock title="Core Features" items={coreFeatures} secondaryItems={secondaryFeatures} />
           {troubleshooting?.length ? (
