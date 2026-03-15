@@ -298,6 +298,69 @@ export const projects: Project[] = [
     },
     links: { github: "https://github.com/dev-minsoo/pomodoro-timer-extension" },
   },
+  {
+    id: "6",
+    slug: "signal-be",
+    title: "Signal",
+    description:
+      "JUNCTION ASIA 2025 해커톤에서 경상북도 산불 이슈를 주제로, SNS 게시물 분석과 시민 제보를 연결해 조기 대응 흐름을 만든 백엔드 프로젝트",
+    image: "/images/projects/signal-be-banner.svg",
+    imageFit: "contain",
+    tags: ["FastAPI", "MongoDB", "OpenAI"],
+    category: "other",
+    outcome: "경상북도 산불 이슈를 배경으로 시민 제보 기반 조기 감지와 산불 상태 관리를 하나의 백엔드 API 흐름으로 연결한 해커톤 프로젝트",
+    detail: {
+      overview:
+        "Signal은 SNS 게시물 분석을 통해 산불을 조기 감지하고, 시민 제보와 공식 정보를 함께 보여주는 재난 대응 서비스의 백엔드다. JUNCTION ASIA 2025 해커톤에서 경상북도 산불 이슈를 주제로, 산불 발생 정보와 상태 전이, 공식 메시지, SNS 기반 제보 데이터를 하나의 흐름으로 연결하는 데 집중했다.",
+      background:
+        "경상북도 산불 이슈처럼 피해 규모가 큰 재난 상황에서는 공식 정보가 정리되기 전에도 시민 제보와 SNS 게시물이 먼저 올라오는 경우가 많다. Signal은 이런 초기 신호를 놓치지 않기 위해 SNS 게시물 분석과 산불 상태 관리 API를 함께 두고, 제보 수집부터 번역, 위치 추출, 중복 판별, 상태 업데이트까지 한 흐름으로 이어지도록 구성한 프로젝트다.",
+      techStack: ["FastAPI", "MongoDB", "OpenAI"],
+      coreFeatures: [
+        "산불 정보 생성, 상태 업데이트, 공식 메시지 관리 API",
+        "SNS 게시글 번역, 위치 추출, 좌표 변환 처리 파이프라인",
+        "fire_name 및 sns_id 기반 중복 방지",
+        "화재별 SNS 게시글 조회와 페이지네이션",
+      ],
+      secondaryFeatures: [
+        "REPORTED -> CHECKING -> CONTAINING -> CONTAINED/FALSE_ALARM 상태 플로우",
+        "Kakao Maps API 기반 지리 정보 매핑",
+        "배치 SNS 데이터 처리",
+        "산 이름 기반 표준화된 화재 이름 생성",
+      ],
+      troubleshooting: [
+        {
+          title: "공식 산불 정보와 SNS 제보를 같은 흐름에서 다뤄야 했음",
+          problem:
+            "재난 정보는 공식 발표 데이터와 사용자 제보 데이터의 성격이 달라, 한쪽만 기준으로 두면 상태 관리와 데이터 조회 흐름이 쉽게 분리될 수 있었다.",
+          solution:
+            "산불 정보와 SNS 게시글을 컬렉션 단위로 분리 저장하면서도 fire_name 기준으로 연결해, 공식 상태 관리와 시민 제보 탐색이 하나의 API 흐름 안에서 이어지도록 구성했다.",
+        },
+        {
+          title: "중복 제보를 막으면서도 실제 재보고는 허용해야 했음",
+          problem:
+            "같은 화재에 대한 SNS 제보가 반복해서 들어오면 데이터 품질이 급격히 떨어지지만, 이미 종료되었거나 오경보로 처리된 화재는 다시 보고될 가능성도 고려해야 했다.",
+          solution:
+            "sns_id와 fire_name 기준 중복 검사를 두고, CONTAINED나 FALSE_ALARM 상태의 화재는 재보고를 허용하는 규칙을 적용해 데이터 무결성과 실제 운영 흐름을 함께 맞췄다.",
+        },
+      ],
+      implementation: [
+        "FastAPI 기반 라우터를 산불 관리, SNS 데이터 수집, SNS 게시글 조회로 분리해 역할을 명확히 나눴다.",
+        "한국어 SNS 데이터를 번역하고 산 이름과 주소를 추출한 뒤 좌표 변환까지 이어지는 AI 처리 흐름을 백엔드에서 담당했다.",
+        "배치 처리와 중복 판별 규칙을 함께 두어 대량 SNS 입력에도 안정적으로 대응할 수 있게 했다.",
+      ],
+      impact: [
+        "짧은 해커톤 기간 안에서도 시민 제보 기반 조기 감지 흐름과 재난 정보 관리 구조를 하나의 백엔드로 묶었다.",
+        "단순 CRUD를 넘어서 상태 전이, 데이터 정합성, 외부 API 연계까지 포함한 서비스형 구조를 빠르게 검증했다.",
+      ],
+    },
+    links: {
+      github: "https://github.com/Junction2025-TalkingPotato/signal-be",
+      external: {
+        label: "Phase On",
+        href: "https://www.phaseon.me/se/the-first-signal",
+      },
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {

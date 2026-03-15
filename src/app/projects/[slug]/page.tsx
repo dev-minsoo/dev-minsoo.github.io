@@ -161,8 +161,28 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 "inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5",
             }
           : null,
+        project.links.external
+          ? {
+              key: "external",
+              href: project.links.external.href,
+              label: project.links.external.label,
+              icon: ExternalLink,
+              className:
+                "inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5",
+            }
+          : null,
       ]
     : [
+        project.links.external
+          ? {
+              key: "external",
+              href: project.links.external.href,
+              label: project.links.external.label,
+              icon: ExternalLink,
+              className:
+                "inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-100 transition-colors hover:border-cyan-300/60 hover:bg-white/5",
+            }
+          : null,
         project.links.github
           ? {
               key: "github",
@@ -231,7 +251,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <p className="text-xs font-mono uppercase tracking-[0.28em] text-cyan-300/90">{project.category}</p>
           <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">{project.title}</h1>
-          <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">{project.description}</p>
+          <p className="mt-5 text-base leading-7 text-slate-300 md:text-lg md:leading-8">
+            {project.description}
+          </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             {techStack.map((tag) => (
@@ -249,7 +271,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-200">
                 {headerCallout.label}
               </p>
-              <p className="mt-2 font-mono text-sm text-white md:text-[15px]">{headerCallout.value}</p>
+              <p className="mt-2 break-all font-mono text-sm text-white md:text-[15px]">{headerCallout.value}</p>
             </div>
           ) : null}
 

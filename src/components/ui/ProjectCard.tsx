@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { Project } from "@/types";
 import Card from "./Card";
@@ -26,10 +27,14 @@ const gradients = [
 ];
 
 export default function ProjectCard({ project, index }: Props) {
+  const router = useRouter();
   const gradientClass = gradients[index % gradients.length];
   const isContainedBanner = project.imageFit === "contain";
   const imageFitClass = isContainedBanner ? "object-contain" : "object-cover";
   const imageMotionClass = isContainedBanner ? "" : "transition-transform duration-500 group-hover:scale-[1.03]";
+  const handleNavigate = () => {
+    router.push(`/projects/${project.slug}`);
+  };
   const actionLinks: ActionLink[] = (project.demoFirst
     ? [
         project.links.demo
@@ -48,8 +53,24 @@ export default function ProjectCard({ project, index }: Props) {
               icon: Github,
             }
           : null,
+        project.links.external
+          ? {
+              key: "external",
+              href: project.links.external.href,
+              label: project.links.external.label,
+              icon: ExternalLink,
+            }
+          : null,
       ]
     : [
+        project.links.external
+          ? {
+              key: "external",
+              href: project.links.external.href,
+              label: project.links.external.label,
+              icon: ExternalLink,
+            }
+          : null,
         project.links.github
           ? {
               key: "github",
@@ -70,7 +91,19 @@ export default function ProjectCard({ project, index }: Props) {
 
   return (
     <motion.article className="h-full" whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-      <Card hover className="group relative flex h-full flex-col p-3 sm:p-3.5">
+      <Card
+        hover
+        className="group relative flex h-full cursor-pointer flex-col p-3 sm:p-3.5"
+        role="link"
+        tabIndex={0}
+        onClick={handleNavigate}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            handleNavigate();
+          }
+        }}
+      >
         <div className="relative aspect-[10/3] overflow-hidden rounded-[16px] border border-white/8 bg-[#0a111d]">
           <Image
             src={project.image}
@@ -127,6 +160,7 @@ export default function ProjectCard({ project, index }: Props) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(event) => event.stopPropagation()}
                   className="transition-colors hover:text-slate-200"
                   aria-label={link.label}
                 >

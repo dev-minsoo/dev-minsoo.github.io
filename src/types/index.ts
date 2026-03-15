@@ -35,6 +35,10 @@ export interface Project {
   links: {
     github?: string;
     demo?: string;
+    external?: {
+      label: string;
+      href: string;
+    };
   };
 }
 
