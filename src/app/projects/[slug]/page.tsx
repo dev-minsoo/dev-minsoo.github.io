@@ -184,7 +184,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             }
           : null,
       ]).filter((link): link is ActionLink => link !== null);
-  const background = project.detail.overview;
+  const background = project.detail.background ?? project.detail.overview;
+  const headerCallout = project.detail.headerCallout;
   const techStack = project.detail.techStack ?? project.tags;
   const coreFeatures = project.detail.coreFeatures ?? project.detail.implementation;
   const secondaryFeatures = project.detail.secondaryFeatures;
@@ -242,6 +243,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </span>
             ))}
           </div>
+
+          {headerCallout ? (
+            <div className="mt-6 rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.05] px-5 py-4">
+              <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-200">
+                {headerCallout.label}
+              </p>
+              <p className="mt-2 font-mono text-sm text-white md:text-[15px]">{headerCallout.value}</p>
+            </div>
+          ) : null}
 
           <div className="mt-8 flex flex-wrap gap-3">
             {actionLinks.map((link) => {

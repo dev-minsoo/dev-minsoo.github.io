@@ -9,6 +9,10 @@ export interface ProjectDetailTemplate {
   implementation: string[];
   impact: string[];
   background?: string;
+  headerCallout?: {
+    label: string;
+    value: string;
+  };
   techStack?: string[];
   coreFeatures?: string[];
   secondaryFeatures?: string[];
