@@ -183,16 +183,47 @@ export const projects: Project[] = [
     slug: "tabnova",
     title: "TabNova",
     description:
-      "Chrome 사이드패널에서 탭을 세로로 보고, 검색하고, 정렬하고, 바로 전환할 수 있게 만든 탭 매니저입니다.",
+      "Chrome 사이드패널 안에서 열린 탭을 세로 목록으로 정리하고, 검색·전환·재정렬까지 한 흐름에서 처리할 수 있도록 만든 브라우저 확장 프로그램입니다.",
     image: "/images/projects/tabnova-banner.png",
     imageFit: "contain",
     logo: "/images/projects/tabnova-logo-128.png",
     tags: ["React", "TypeScript", "Chrome Extension"],
     category: "web",
-    outcome: "탭이 많아졌을 때 기본 탭 바 대신 더 보기 쉬운 흐름을 만든 작업",
+    outcome: "탭을 많이 열어두는 사용자의 탐색 비용을 줄이는 데 집중한 사이드패널 기반 탭 매니저 프로젝트",
     detail: {
       overview:
-        "TabNova는 탭이 많아졌을 때 Chrome의 기본 가로 탭 바가 불편하다고 느껴 만든 확장 프로그램입니다. 사이드패널 안에서 탭을 세로로 보고, 검색하고, 정렬하고, 바로 전환할 수 있도록 구성했습니다.",
+        "TabNova는 탭이 많아질수록 가독성이 급격히 떨어지는 기본 브라우저 탭 바를 보완하기 위해 만든 개인 프로젝트입니다.",
+      background:
+        "기본 가로 탭 바는 탭 수가 많아질수록 제목 식별과 이동이 불편해집니다. TabNova는 Chrome 사이드패널을 활용해 현재 창의 탭을 세로로 정리하고, 검색, 전환, 닫기, 정렬을 하나의 탐색 워크플로우 안에서 처리할 수 있게 만드는 데 집중했습니다. 북마크와 당일 방문 기록까지 같은 패널 안에서 볼 수 있게 구성해 브라우징 흐름이 끊기지 않도록 설계했습니다.",
+      techStack: ["React", "TypeScript", "Chrome Extension"],
+      coreFeatures: [
+        "현재 창 탭을 실시간으로 반영하는 세로형 탭 목록",
+        "제목/URL 기준의 즉시 필터링과 검색어 하이라이트",
+        "`dnd-kit` 기반 드래그 앤 드롭 탭 재정렬",
+        "탭 전환, 닫기, 복제 등의 빠른 액션",
+      ],
+      secondaryFeatures: [
+        "북마크 트리 탐색과 폴더 확장/축소",
+        "당일 방문 기록 조회와 재열기",
+        "언어, 테마, 강조색을 `chrome.storage.sync`로 저장하는 설정 페이지",
+        "자주 쓰는 링크를 빠른 메뉴에 저장하는 즐겨찾기 흐름",
+      ],
+      troubleshooting: [
+        {
+          title: "브라우저 상태 변화가 UI에 즉시 반영돼야 했음",
+          problem:
+            "탭은 사용자가 계속 생성하고 닫고 이동시키기 때문에, 처음 한 번 읽어 온 목록만으로는 사이드패널 경험이 금방 실제 브라우저 상태와 어긋날 수 있었습니다.",
+          solution:
+            "사이드패널 진입 시 현재 창의 탭을 조회하고 `chrome.tabs.onUpdated`, `onCreated`, `onRemoved` 이벤트를 구독해 목록을 다시 로드하도록 구성했습니다.",
+        },
+        {
+          title: "브라우저 상태와 사용자 설정을 분리해 관리해야 했음",
+          problem:
+            "탭·북마크·방문 기록 같은 브라우저 데이터와 언어·테마·강조색 같은 사용자 취향 값을 같은 방식으로 다루면 상태 책임이 섞이기 쉬웠습니다.",
+          solution:
+            "브라우저 상태는 `chrome.tabs`, `chrome.bookmarks`, `chrome.history`에서 읽고, 사용자 설정은 `chrome.storage.sync`에 저장해 역할을 분리했습니다. 설정 변경은 저장소 이벤트를 통해 사이드패널에 실시간 반영되도록 연결했습니다.",
+        },
+      ],
       implementation: [
         "현재 창의 열린 탭을 실시간으로 반영하는 세로 리스트를 만들었습니다.",
         "드래그 앤 드롭 정렬, hover 기반 빠른 닫기, 실시간 검색을 지원해 탭 정리 흐름이 끊기지 않도록 했습니다.",
