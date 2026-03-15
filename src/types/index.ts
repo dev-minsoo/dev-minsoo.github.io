@@ -29,7 +29,7 @@ export interface Project {
   logo?: string;
   demoFirst?: boolean;
   tags: string[];
-  category: "web" | "mobile" | "fullstack" | "other";
+  category: "web" | "mobile" | "fullstack" | "backend" | "other";
   outcome: string;
   detail: ProjectDetailTemplate;
   links: {

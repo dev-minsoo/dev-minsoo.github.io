@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Project } from "@/types";
 import Card from "./Card";
 
@@ -130,45 +129,41 @@ export default function ProjectCard({ project, index }: Props) {
             {project.description}
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-md border border-white/8 bg-white/[0.025] px-2 py-1 text-[11px] text-slate-300"
-              >
-                {tag}
-              </span>
-            ))}
+          <div className="mt-3 flex items-start justify-between gap-3">
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md border border-white/8 bg-white/[0.025] px-2 py-1 text-[11px] text-slate-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex shrink-0 items-center gap-2.5 pt-1 text-slate-500">
+              {actionLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.key}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(event) => event.stopPropagation()}
+                    className="transition-colors hover:text-slate-200"
+                    aria-label={link.label}
+                  >
+                    <Icon size={14} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div className="relative z-10 mt-4 flex items-center justify-between gap-3 border-t border-white/8 px-1 pt-4">
-          <Link
-            href={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-200/90 transition-colors hover:text-cyan-100"
-          >
-            자세히 보기
-            <ArrowRight size={14} />
-          </Link>
-
-          <div className="flex items-center gap-2.5 text-slate-500">
-            {actionLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.key}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(event) => event.stopPropagation()}
-                  className="transition-colors hover:text-slate-200"
-                  aria-label={link.label}
-                >
-                  <Icon size={14} />
-                </a>
-              );
-            })}
-          </div>
+        <div className="sr-only">
+          <span>{project.title} 상세 페이지로 이동</span>
         </div>
       </Card>
     </motion.article>

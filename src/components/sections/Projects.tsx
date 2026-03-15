@@ -7,11 +7,12 @@ import ProjectCard from "@/components/ui/ProjectCard";
 import { projects } from "@/config/projects";
 import { cn } from "@/lib/utils";
 
-const categoryOrder = ["all", "fullstack", "web", "other"];
+const categoryOrder = ["all", "fullstack", "web", "backend", "other"];
 const categoryLabel: Record<string, string> = {
   all: "전체",
   fullstack: "Full-Stack",
   web: "Web",
+  backend: "Backend",
   other: "Other",
 };
 

@@ -74,7 +74,7 @@ export const projects: Project[] = [
     image: "/images/projects/55h-banner.svg",
     imageFit: "contain",
     tags: ["Go", "TUI", "SSH"],
-    category: "other",
+    category: "backend",
     outcome: "여러 SSH 접속 대상을 CLI와 TUI 안에서 더 빠르게 등록하고 찾아 접근할 수 있게 만든 프로젝트",
     detail: {
       overview:
