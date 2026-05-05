@@ -1,0 +1,62 @@
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Lens Flow banner</title>
+  <desc id="desc">Kubernetes workload topology graph for Lens family apps</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111F"/>
+      <stop offset="0.52" stop-color="#0B1828"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="graphPanel" x1="696" y1="58" x2="1296" y2="354" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F2A3A"/>
+      <stop offset="1" stop-color="#0A1321"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.32 0"/>
+      <feBlend in2="SourceGraphic" mode="screen"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="420" fill="url(#bg)"/>
+  <circle cx="176" cy="92" r="132" fill="#22D3EE" opacity="0.12"/>
+  <circle cx="604" cy="358" r="168" fill="#34D399" opacity="0.10"/>
+  <path d="M0 346C164 304 258 300 392 326C548 356 640 398 818 380C986 362 1112 302 1400 326V420H0V346Z" fill="#050914" opacity="0.48"/>
+
+  <rect x="76" y="66" width="548" height="286" rx="30" fill="#0B1423" stroke="#1E3A4A"/>
+  <text x="116" y="145" fill="#ECFEFF" font-family="Arial, sans-serif" font-size="62" font-weight="700">Lens Flow</text>
+  <text x="118" y="190" fill="#A5F3FC" font-family="Arial, sans-serif" font-size="21">Kubernetes topology inside Lens</text>
+  <text x="118" y="232" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="17">Trace routing, ownership, and dependencies at a glance.</text>
+  <rect x="118" y="266" width="322" height="44" rx="22" fill="#08111E" stroke="#155E75"/>
+  <text x="279" y="293" text-anchor="middle" fill="#67E8F9" font-family="Menlo, monospace" font-size="15">Ingress - Service - Pod</text>
+  <text x="118" y="334" fill="#94A3B8" font-family="Arial, sans-serif" font-size="16">Lens 6+  •  OpenLens 6+  •  FreeLens 1.8.1+</text>
+
+  <rect x="690" y="58" width="630" height="304" rx="32" fill="url(#graphPanel)" stroke="#1E3A4A"/>
+  <rect x="724" y="90" width="188" height="44" rx="22" fill="#082F49" stroke="#38BDF8"/>
+  <text x="818" y="118" text-anchor="middle" fill="#E0F2FE" font-family="Arial, sans-serif" font-size="15" font-weight="700">Ingress</text>
+  <rect x="1014" y="90" width="188" height="44" rx="22" fill="#083344" stroke="#22D3EE"/>
+  <text x="1108" y="118" text-anchor="middle" fill="#ECFEFF" font-family="Arial, sans-serif" font-size="15" font-weight="700">Service</text>
+  <rect x="858" y="188" width="188" height="44" rx="22" fill="#064E3B" stroke="#34D399"/>
+  <text x="952" y="216" text-anchor="middle" fill="#D1FAE5" font-family="Arial, sans-serif" font-size="15" font-weight="700">Deployment</text>
+  <rect x="1114" y="188" width="148" height="44" rx="22" fill="#312E81" stroke="#818CF8"/>
+  <text x="1188" y="216" text-anchor="middle" fill="#E0E7FF" font-family="Arial, sans-serif" font-size="15" font-weight="700">ConfigMap</text>
+  <rect x="782" y="286" width="148" height="44" rx="22" fill="#134E4A" stroke="#2DD4BF"/>
+  <text x="856" y="314" text-anchor="middle" fill="#CCFBF1" font-family="Arial, sans-serif" font-size="15" font-weight="700">ReplicaSet</text>
+  <rect x="1038" y="286" width="148" height="44" rx="22" fill="#164E63" stroke="#67E8F9"/>
+  <text x="1112" y="314" text-anchor="middle" fill="#CFFAFE" font-family="Arial, sans-serif" font-size="15" font-weight="700">Pod</text>
+
+  <g filter="url(#softGlow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M912 112H1014" stroke="#38BDF8" stroke-width="5"/>
+    <path d="M1108 134C1108 160 1016 166 978 188" stroke="#22D3EE" stroke-width="5"/>
+    <path d="M952 232C936 254 888 258 856 286" stroke="#34D399" stroke-width="5"/>
+    <path d="M952 232C974 258 1058 256 1112 286" stroke="#2DD4BF" stroke-width="5"/>
+    <path d="M1046 210H1114" stroke="#818CF8" stroke-width="4" stroke-dasharray="10 10"/>
+  </g>
+
+  <rect x="1210" y="74" width="82" height="214" rx="22" fill="#07111F" stroke="#1E3A4A"/>
+  <circle cx="1251" cy="116" r="15" fill="#38BDF8"/>
+  <circle cx="1251" cy="166" r="15" fill="#34D399"/>
+  <circle cx="1251" cy="216" r="15" fill="#818CF8"/>
+  <rect x="738" y="342" width="212" height="10" rx="5" fill="#164E63"/>
+  <rect x="968" y="342" width="132" height="10" rx="5" fill="#0F766E"/>
+  <rect x="1118" y="342" width="88" height="10" rx="5" fill="#4338CA"/>
+</svg>

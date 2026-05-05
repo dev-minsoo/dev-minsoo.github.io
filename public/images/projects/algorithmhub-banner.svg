@@ -1,0 +1,56 @@
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AlgorithmHub banner</title>
+  <desc id="desc">Chrome extension that syncs accepted coding test submissions to GitHub</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1020"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#13231E"/>
+    </linearGradient>
+    <linearGradient id="codePanel" x1="744" y1="54" x2="1312" y2="358" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172033"/>
+      <stop offset="1" stop-color="#0A111D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="420" fill="url(#bg)"/>
+  <circle cx="236" cy="84" r="120" fill="#60A5FA" opacity="0.13"/>
+  <circle cx="1260" cy="350" r="164" fill="#22C55E" opacity="0.11"/>
+  <path d="M0 340C142 318 256 324 390 356C542 392 704 392 872 358C1040 324 1198 300 1400 332V420H0V340Z" fill="#050914" opacity="0.46"/>
+
+  <rect x="78" y="66" width="560" height="286" rx="30" fill="#0B1423" stroke="#26364D"/>
+  <text x="118" y="145" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="60" font-weight="700">AlgorithmHub</text>
+  <text x="120" y="190" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="21">Accepted submissions to GitHub</text>
+  <text x="120" y="232" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="17">Sync LeetCode and Programmers solutions without manual copy.</text>
+  <rect x="120" y="266" width="300" height="44" rx="22" fill="#08111E" stroke="#2563EB"/>
+  <text x="270" y="293" text-anchor="middle" fill="#93C5FD" font-family="Menlo, monospace" font-size="15">accepted - commit - README</text>
+  <text x="120" y="334" fill="#94A3B8" font-family="Arial, sans-serif" font-size="16">Chrome MV3  •  GitHub API  •  Path templates</text>
+
+  <rect x="710" y="54" width="618" height="304" rx="32" fill="url(#codePanel)" stroke="#26364D"/>
+  <rect x="738" y="84" width="562" height="242" rx="22" fill="#08111E" stroke="#1F2937"/>
+  <rect x="738" y="84" width="562" height="34" rx="22" fill="#111827"/>
+  <circle cx="764" cy="101" r="5" fill="#F87171"/>
+  <circle cx="784" cy="101" r="5" fill="#FBBF24"/>
+  <circle cx="804" cy="101" r="5" fill="#34D399"/>
+
+  <rect x="778" y="148" width="210" height="48" rx="16" fill="#10243C" stroke="#2563EB"/>
+  <text x="883" y="178" text-anchor="middle" fill="#DBEAFE" font-family="Arial, sans-serif" font-size="15" font-weight="700">LeetCode</text>
+  <rect x="1050" y="148" width="210" height="48" rx="16" fill="#12312A" stroke="#22C55E"/>
+  <text x="1155" y="178" text-anchor="middle" fill="#DCFCE7" font-family="Arial, sans-serif" font-size="15" font-weight="700">Programmers</text>
+  <path d="M992 172H1048" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1018 154L1048 172L1018 190" stroke="#94A3B8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="826" y="236" width="386" height="54" rx="18" fill="#0A111D" stroke="#334155"/>
+  <text x="1019" y="268" text-anchor="middle" fill="#F8FAFC" font-family="Menlo, monospace" font-size="15">github.com/dev-minsoo/solutions</text>
+  <path d="M936 198C934 218 908 220 908 236" stroke="#60A5FA" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1102 198C1104 218 1130 220 1130 236" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+
+  <g>
+    <rect x="778" y="318" width="98" height="10" rx="5" fill="#3B82F6"/>
+    <rect x="894" y="318" width="132" height="10" rx="5" fill="#64748B"/>
+    <rect x="1044" y="318" width="90" height="10" rx="5" fill="#22C55E"/>
+    <rect x="1152" y="318" width="108" height="10" rx="5" fill="#64748B"/>
+  </g>
+
+  <circle cx="1110" cy="258" r="21" fill="#22C55E"/>
+  <path d="M1100 258L1108 266L1121 250" stroke="#F0FDF4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

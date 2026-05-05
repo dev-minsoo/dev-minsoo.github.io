@@ -2,6 +2,129 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    id: "7",
+    slug: "lens-flow",
+    title: "Lens Flow",
+    description:
+      "Kubernetes 리소스들이 어떻게 연결되어 있는지 Lens 계열 앱 안에서 한눈에 따라볼 수 있도록 만든 토폴로지 확장 프로그램",
+    image: "/images/projects/lens-flow-banner.svg",
+    imageFit: "contain",
+    tags: ["TypeScript", "React Flow", "Kubernetes"],
+    category: "other",
+    outcome:
+      "Ingress부터 Pod, ConfigMap, Secret, PVC까지 흩어진 Kubernetes 리소스 관계를 클러스터 화면 안에서 빠르게 파악할 수 있게 만든 프로젝트",
+    detail: {
+      overview:
+        "Lens Flow는 Lens 계열 데스크톱 앱에 Workload Monitoring 페이지를 추가해 Kubernetes 워크로드의 트래픽 경로와 리소스 의존성을 그래프로 보여주는 익스텐션이다.",
+      background:
+        "Kubernetes 리소스 관계를 확인할 때는 Ingress, Service, Deployment, ReplicaSet, Pod, ConfigMap, Secret, PVC 상세 화면을 계속 오가게 된다. Lens Flow는 이 탐색 비용을 줄이기 위해 클러스터 화면 안에서 namespace를 선택하고, 리소스 종류를 필터링하며, 연결 경로를 한눈에 따라갈 수 있는 그래프 기반 흐름으로 구성했다.",
+      techStack: ["TypeScript", "React", "React Flow", "Dagre", "Lens API"],
+      coreFeatures: [
+        "Internet, LoadBalancer, Ingress, Service, Deployment, ReplicaSet, Pod, ConfigMap, Secret, PVC 리소스 토폴로지 그래프",
+        "Service에서 workload, workload에서 pod로 이어지는 관계 추적",
+        "`env`, `envFrom`, `volumes` 기반 dependency edge 표시",
+        "클러스터 페이지 안에서 namespace 기준 그래프 탐색",
+      ],
+      secondaryFeatures: [
+        "리소스 종류별 visibility 필터",
+        "Left to right / Top to bottom 레이아웃 전환",
+        "Minimap과 controls 토글",
+        "edge hover 강조와 클릭 가능한 리소스 카드",
+        "앱별 설정 파일 저장",
+      ],
+      troubleshooting: [
+        {
+          title: "흩어진 Kubernetes 관계를 하나의 그래프로 정규화해야 했음",
+          problem:
+            "서비스 라우팅은 selector와 포트 매핑에, 워크로드 관계는 owner reference에, 설정 의존성은 env와 volume 정의에 나뉘어 있어 단순 목록으로는 실제 흐름을 파악하기 어려웠다.",
+          solution:
+            "리소스별 노드와 edge 생성 책임을 graph 모듈로 분리하고, Service-to-workload, workload-to-pod, 설정 의존성 edge를 각각 정규화해 React Flow에서 일관된 토폴로지로 렌더링했다.",
+        },
+        {
+          title: "Lens 계열 앱 안에서 별도 프로세스 없이 동작해야 했음",
+          problem:
+            "클러스터 관찰 도구가 별도 사이드카나 외부 서버를 요구하면 설치와 운영 부담이 커지고, Lens/OpenLens/FreeLens 간 설정 저장 경로도 달라질 수 있었다.",
+          solution:
+            "Lens renderer API를 사용해 클러스터 화면 안에서 동작하도록 만들고, 앱별 설정 경로에 선택 namespace, visible resource, graph direction 같은 UI 상태를 저장하도록 구성했다.",
+        },
+      ],
+      implementation: [
+        "Lens renderer API 기반의 Workload Monitoring 페이지를 추가하고, 클러스터 리소스를 읽어 React Flow 그래프로 표현했다.",
+        "Dagre 레이아웃을 적용해 좌우형과 상하형 탐색을 지원하고, 리소스 필터와 edge hover 강조로 복잡한 그래프를 좁혀 볼 수 있게 했다.",
+        "설정 저장과 graph 변환 로직에 테스트를 붙이고, GitHub Releases에서 설치 가능한 `.tgz` 패키지 형태로 배포했다.",
+      ],
+      impact: [
+        "Kubernetes 리소스 상세 화면을 반복해서 오가는 탐색 비용을 줄였다.",
+        "운영자가 자주 묻는 Ingress-to-Service, Service-to-Workload, Workload-to-Pod 관계를 한 화면에서 확인할 수 있게 했다.",
+      ],
+    },
+    links: { github: "https://github.com/dev-minsoo/lens-flow" },
+  },
+  {
+    id: "8",
+    slug: "algorithmhub",
+    title: "AlgorithmHub",
+    description:
+      "LeetCode와 프로그래머스의 정답 제출 코드를 감지해 GitHub 저장소로 자동 동기화하는 Chrome 확장 프로그램",
+    image: "/images/projects/algorithmhub-banner.svg",
+    imageFit: "contain",
+    tags: ["React", "TypeScript", "Chrome Extension"],
+    category: "web",
+    outcome:
+      "코딩 테스트 풀이를 제출한 뒤 파일 정리와 GitHub 업로드를 반복하던 흐름을 자동화한 브라우저 확장 프로젝트",
+    detail: {
+      overview:
+        "AlgorithmHub는 LeetCode와 프로그래머스에서 accepted 제출이 발생했을 때 풀이 코드를 GitHub 저장소로 자동 동기화하는 Chrome 확장 프로그램이다.",
+      background:
+        "코딩 테스트 문제를 풀고 나면 제출 코드를 다시 복사해 저장소에 정리하는 반복 작업이 생긴다. AlgorithmHub는 GitHub 계정과 저장소를 연결해두면 플랫폼별 정답 제출을 감지하고, 풀이 파일과 README 요약을 자동으로 유지하도록 만들어 이 관리 비용을 줄이는 데 집중했다.",
+      techStack: ["React", "TypeScript", "Vite", "Chrome Extension MV3", "GitHub API"],
+      coreFeatures: [
+        "LeetCode와 프로그래머스 accepted 제출 코드 자동 업로드",
+        "GitHub 새 저장소 생성 또는 기존 저장소 연결",
+        "플랫폼별 저장 경로 템플릿 커스터마이징",
+        "플랫폼 기준 요약이 포함된 루트 README 자동 유지",
+      ],
+      secondaryFeatures: [
+        "Chrome popup과 options page 기반 설정 흐름",
+        "LeetCode, 프로그래머스, GitHub 대상 content script",
+        "GitHub API 연동을 위한 background service worker",
+        "한국어/영어 README와 기여 가이드 정리",
+      ],
+      troubleshooting: [
+        {
+          title: "플랫폼마다 다른 제출 흐름을 하나의 동기화 모델로 묶어야 했음",
+          problem:
+            "LeetCode와 프로그래머스는 문제 페이지 구조와 제출 결과를 확인하는 방식이 달라, 한 플랫폼에 맞춘 로직만으로는 확장성을 확보하기 어려웠다.",
+          solution:
+            "플랫폼별 content script에서 accepted 제출과 풀이 정보를 감지하고, 내부에서는 플랫폼, 문제 정보, 언어, 코드, 저장 경로로 정규화해 GitHub 업로드 흐름에 연결했다.",
+        },
+        {
+          title: "자동 업로드가 사용자 저장소 구조를 망가뜨리면 안 됐음",
+          problem:
+            "풀이 파일을 자동으로 올리는 기능은 편하지만, 저장 경로와 README가 사용자의 기대와 다르면 오히려 저장소 관리가 어려워질 수 있었다.",
+          solution:
+            "새 저장소 생성과 기존 저장소 연결을 모두 지원하고, 플랫폼별 path template과 루트 README 요약을 함께 관리해 사용자가 원하는 구조 안에서 자동화를 사용할 수 있게 했다.",
+        },
+      ],
+      implementation: [
+        "Vite와 React로 popup/options UI를 구성하고, Chrome MV3 background service worker가 GitHub API 연동과 저장 상태 관리를 담당하도록 나눴다.",
+        "LeetCode와 프로그래머스 페이지에 content script를 주입해 accepted 제출 흐름을 감지하고, 풀이 데이터를 GitHub 업로드 요청으로 변환했다.",
+        "저장소 생성, 기존 저장소 연결, 경로 템플릿, README 갱신까지 포함해 풀이 업로드 이후의 정리 작업을 자동화했다.",
+      ],
+      impact: [
+        "코딩 테스트 풀이 기록을 GitHub에 옮기는 반복 작업을 줄였다.",
+        "두 플랫폼을 하나의 확장에서 지원해 알고리즘 풀이 저장소를 더 일관되게 관리할 수 있게 했다.",
+      ],
+    },
+    links: {
+      github: "https://github.com/dev-minsoo/AlgorithmHub",
+      external: {
+        label: "Chrome Web Store",
+        href: "https://chromewebstore.google.com/detail/algorithmhub/kjlimilghmpficcgaemjdgdlicjmcamb?hl=ko&utm_source=ext_sidebar",
+      },
+    },
+  },
+  {
     id: "1",
     slug: "fastvote",
     title: "FastVote",
